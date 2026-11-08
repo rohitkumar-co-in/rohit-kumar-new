@@ -1,0 +1,14 @@
+---
+import Icon from './Icon.astro';
+interface Props { number: string; }
+const { number } = Astro.props;
+---
+<section class="closing-cta page-shell" data-reveal aria-labelledby="closing-cta-title">
+  <p class="section-kicker"><span>{number}</span> Have a project in mind?</p>
+  <h2 id="closing-cta-title">Let’s build what<br /><em>your business needs.</em></h2>
+  <div class="closing-bottom">
+    <p>Tell me what you need to improve or make possible. I’ll help shape the next step.</p>
+    <a href="/contact/" class="closing-arrow" aria-label="Tell me about your project"><Icon name="arrow" /></a>
+  </div>
+  <div class="closing-spark" aria-hidden="true"><Icon name="spark" /></div>
+</section>
