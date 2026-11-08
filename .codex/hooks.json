@@ -1,0 +1,42 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "vibedoctor-rohit-kumar-new",
+            "tool": "vibedoctor_status",
+            "input": {
+              "hookEvent": "UserPromptSubmit",
+              "hookClient": "codex",
+              "hookSession": "${session_id}",
+              "hookCwd": "${cwd}"
+            },
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "vibedoctor-rohit-kumar-new",
+            "tool": "vibedoctor_status",
+            "input": {
+              "hookEvent": "PostToolUse",
+              "hookClient": "codex",
+              "hookInput": "${tool_input}",
+              "hookSession": "${session_id}",
+              "hookCwd": "${cwd}"
+            },
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

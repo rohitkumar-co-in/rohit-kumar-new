@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "npm run build && node --env-file=local.env scripts/dev-worker.mjs 4321",
     "build": "astro build",
+    "test": "node --test",
     "preview": "npm run build && node --env-file=local.env scripts/dev-worker.mjs 4322",
     "deploy": "npm run build && wrangler deploy"
   },

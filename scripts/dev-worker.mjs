@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { existsSync, unlinkSync, writeFileSync } from 'node:fs';
+import { unlink, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const token = process.env.BOT_TOKEN?.trim();
@@ -10,12 +10,16 @@ if (!token || !userId) {
 }
 
 const varsPath = resolve('.dev.vars');
-if (existsSync(varsPath)) {
-  console.error('Remove the existing .dev.vars file before using the local.env dev launcher.');
+try {
+  await writeFile(varsPath, `BOT_TOKEN=${JSON.stringify(token)}\nUSER_ID=${JSON.stringify(userId)}\n`, { mode: 0o600, flag: 'wx' });
+} catch (error) {
+  if (error.code === 'EEXIST') {
+    console.error('Remove the existing .dev.vars file before using the local.env dev launcher.');
+  } else {
+    console.error(`Could not create temporary Worker secrets: ${error.message}`);
+  }
   process.exit(1);
 }
-
-writeFileSync(varsPath, `BOT_TOKEN=${JSON.stringify(token)}\nUSER_ID=${JSON.stringify(userId)}\n`, { mode: 0o600 });
 
 const port = process.argv[2] || '4321';
 const wrangler = spawn(process.execPath, ['node_modules/wrangler/bin/wrangler.js', 'dev', '--port', port, '--ip', '127.0.0.1'], {
@@ -23,21 +27,24 @@ const wrangler = spawn(process.execPath, ['node_modules/wrangler/bin/wrangler.js
 });
 
 let cleaned = false;
-const cleanUp = () => {
+const cleanUp = async () => {
   if (cleaned) return;
   cleaned = true;
-  if (existsSync(varsPath)) unlinkSync(varsPath);
+  try {
+    await unlink(varsPath);
+  } catch (error) {
+    if (error.code !== 'ENOENT') console.error(`Could not remove temporary Worker secrets: ${error.message}`);
+  }
 };
 
-process.on('SIGINT', () => { cleanUp(); wrangler.kill(); });
-process.on('SIGTERM', () => { cleanUp(); wrangler.kill(); });
-process.on('exit', cleanUp);
+process.on('SIGINT', () => { wrangler.kill('SIGINT'); void cleanUp(); });
+process.on('SIGTERM', () => { wrangler.kill('SIGTERM'); void cleanUp(); });
 wrangler.on('error', (error) => {
-  cleanUp();
+  void cleanUp();
   console.error(`Could not start Wrangler: ${error.message}`);
   process.exitCode = 1;
 });
-wrangler.on('exit', (code, signal) => {
-  cleanUp();
+wrangler.on('exit', async (code, signal) => {
+  await cleanUp();
   process.exitCode = code ?? (signal ? 1 : 0);
 });

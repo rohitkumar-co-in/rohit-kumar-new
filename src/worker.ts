@@ -18,9 +18,18 @@ const json = (body: Record<string, unknown>, status = 200) => new Response(JSON.
   headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
 });
 
-const text = (value: unknown, maxLength: number) => typeof value === 'string'
-  ? value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim().slice(0, maxLength)
-  : '';
+const text = (value: unknown, maxLength: number) => {
+  if (typeof value !== 'string') return '';
+
+  let cleaned = '';
+  for (const character of value) {
+    const code = character.charCodeAt(0);
+    const isDisallowedControl = code === 0x7f || (code < 0x20 && code !== 0x09 && code !== 0x0a && code !== 0x0d);
+    if (!isDisallowedControl) cleaned += character;
+  }
+
+  return cleaned.trim().slice(0, maxLength);
+};
 
 async function handleContact(request: Request, env: Env): Promise<Response> {
   const origin = request.headers.get('Origin');
