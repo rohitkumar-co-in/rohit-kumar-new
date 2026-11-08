@@ -58,8 +58,11 @@ const tickerItems = ['Custom software', 'Business-first thinking', 'AI-powered w
 
   <div class="ticker" aria-label="How I build"><div class="ticker-track"><div class="ticker-group">{Array.from({ length: 3 }).flatMap(() => tickerItems).map((item) => <span class="ticker-item"><span>{item}</span><b>✳</b></span>)}</div><div class="ticker-group" aria-hidden="true">{Array.from({ length: 3 }).flatMap(() => tickerItems).map((item) => <span class="ticker-item"><span>{item}</span><b>✳</b></span>)}</div></div></div>
 
-  {projects.map((project, index) => <section class="project-highlight page-shell" aria-label={`${project.name} featured project`}>
-    <div class="section-heading" data-reveal><div><p class="section-kicker"><span>{String(index + 1).padStart(2, '0')}</span> {index === 0 ? 'Selected work' : 'More selected work'}</p><h2>{index === 0 ? <>Things I built.<br /><em>Problems they solve.</em></> : <>{project.name}.<br /><em>Built for a real need.</em></>}</h2></div>{index === 0 && <a class="section-link" href="/work/">All projects <Icon name="arrow" /></a>}</div>
+  <section class="selected-work-heading page-shell" aria-labelledby="selected-work-title">
+    <div class="section-heading" data-reveal><div><p class="section-kicker"><span>01</span> Selected work</p><h2 id="selected-work-title">Things I built.<br /><em>Problems they solve.</em></h2></div><a class="section-link" href="/work/">All projects <Icon name="arrow" /></a></div>
+  </section>
+
+  {projects.map((project) => <section class="project-highlight page-shell" aria-label={`${project.name} featured project`}>
     <div class="project-feature-card" data-reveal><ProjectCard project={project} /></div>
   </section>)}
 
