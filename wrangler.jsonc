@@ -6,11 +6,11 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*"],
+    "run_worker_first": ["/api/*", "/work", "/work/*"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
   "secrets": {
-    "required": ["BOT_TOKEN", "USER_ID"]
+    "required": ["BOT_TOKEN", "USER_ID", "TURNSTILE_SECRET_KEY"]
   }
 }

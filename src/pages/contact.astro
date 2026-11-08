@@ -1,20 +1,55 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { email, socials } from '../data/site';
+import { email, projectPricingNote, socials } from '../data/site';
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
-<BaseLayout title="Contact Rohit Kumar | Start a Project" description="Tell me about the business problem you want to solve. I build custom websites, software, APIs, and automations from $599, with the final price based on scope.">
-  <section class="contact-hero page-shell"><div class="contact-intro"><p class="section-kicker" data-reveal>Contact / New project</p><h1 data-reveal>Let’s talk about<br /><em>what you need.</em></h1><p data-reveal>Tell me what needs to work better, what you want to build, or which repetitive task is eating up time.</p><a class="contact-direct" href={`mailto:${email}`} data-reveal><span>Prefer email?</span><strong>{email} ↗</strong></a><div class="contact-social" data-reveal><span>FIND ME ELSEWHERE</span>{socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer">{social.label} ↗</a>)}</div><div class="contact-deco" aria-hidden="true"><span>LET’S</span><b>SOLVE IT</b><i>✳</i></div></div>
-  <form class="contact-form" data-contact-form data-reveal method="POST" action="/api/contact">
+<BaseLayout title="Start a Project | Rohit Kumar" description="Tell me what you want to improve. I build websites, software, and automations to bring in more leads and save your team time. Projects start at $599.">
+  <section class="contact-hero page-shell"><div class="contact-intro"><p class="section-kicker" data-reveal>Contact / New project</p><h1 data-reveal>What do you want<br /><em>to improve?</em></h1><p data-reveal>Tell me what’s costing you leads, taking too much time, or getting in the way of a new idea.</p><a class="contact-direct" href={`mailto:${email}`} data-reveal><span>Prefer email?</span><strong>{email} ↗</strong></a><div class="contact-social" data-reveal><span>FIND ME ELSEWHERE</span>{socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer">{social.label} ↗</a>)}</div><div class="contact-deco" aria-hidden="true"><span>LET’S</span><b>SOLVE IT</b><i>✳</i></div></div>
+  <form class="contact-form" data-contact-form data-turnstile-enabled={Boolean(turnstileSiteKey)} data-reveal method="POST" action="/api/contact">
     <label class="form-honey" aria-hidden="true">Leave this field empty<input name="_honey" tabindex="-1" autocomplete="off" /></label>
     <div class="form-heading"><span>PROJECT ENQUIRY</span><span>01 — 05</span></div>
     <label class="form-field"><span>Your name <i>*</i></span><input name="name" type="text" autocomplete="name" placeholder="What should I call you?" required minlength="2" /></label>
     <label class="form-field"><span>Email address <i>*</i></span><input name="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
-    <div class="form-split"><label class="form-field"><span>What are we making?</span><select name="projectType"><option value="">Choose a direction</option><option>Website</option><option>Web software / product</option><option>API / integration</option><option>Something else</option></select></label><label class="form-field"><span>Budget range</span><select name="budget"><option value="">Not sure yet</option><option>$599–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option><option>Let’s discuss</option></select></label></div>
-    <label class="form-field"><span>Tell me about the project <i>*</i></span><textarea name="message" rows="5" placeholder="What are you trying to build or improve?" required minlength="15"></textarea></label>
-    <div class="form-submit-row"><p>Custom projects start at $599.<br />Final quote depends on scope.</p><button type="submit" class="button button-primary">Send project details <Icon name="arrow" /></button></div>
+    <div class="form-split"><label class="form-field"><span>What do you need?</span><select name="projectType"><option value="">Pick one</option><option>Website to bring in more leads</option><option>Business software / product</option><option>API / integration</option><option>Automation to save time</option><option>Something else</option></select></label><label class="form-field"><span>Budget range</span><select name="budget"><option value="">Not sure yet</option><option>$599–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option><option>Let’s discuss</option></select></label></div>
+    <label class="form-field"><span>What are you trying to fix? <i>*</i></span><textarea name="message" rows="5" placeholder="What’s taking too much time or costing you leads?" required minlength="15"></textarea></label>
+    {turnstileSiteKey ? <><div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-action="contact" data-callback="onContactTurnstileSuccess" data-error-callback="onContactTurnstileError" data-expired-callback="onContactTurnstileExpired" data-timeout-callback="onContactTurnstileExpired"></div><p class="form-status" data-turnstile-status role="status" aria-live="polite">Complete the security check to enable sending.</p></> : <p class="turnstile-setup-note">The form is unavailable right now. <a href={`mailto:${email}`}>Email me directly</a>.</p>}
+    <div class="form-submit-row"><p>{projectPricingNote}</p><button type="submit" class="button button-primary" disabled>Send project details <Icon name="arrow" /></button></div>
     <p class="form-status" data-form-status role="status" aria-live="polite"></p>
-    <p class="form-note">Your project details go straight to my Telegram inbox. <a href={`mailto:${email}`}>Prefer email?</a></p>
+    <p class="form-note">Prefer email? <a href={`mailto:${email}`}>Reach me directly</a>.</p>
   </form></section>
   <section class="contact-strip page-shell"><span>NO PROJECT IS ONE-SIZE-FITS-ALL</span><i></i><span>LET’S START WITH THE PROBLEM</span></section>
+  {turnstileSiteKey && <>
+    <script is:inline>
+      (() => {
+        const getElements = () => ({
+          button: document.querySelector('[data-contact-form] button[type="submit"]'),
+          status: document.querySelector('[data-turnstile-status]'),
+        });
+        window.onContactTurnstileSuccess = () => {
+          const { button, status } = getElements();
+          if (button) button.disabled = false;
+          if (status) { status.dataset.state = 'success'; status.textContent = 'Security check complete.'; }
+        };
+        window.onContactTurnstileExpired = () => {
+          const { button, status } = getElements();
+          if (button) button.disabled = true;
+          if (status) { status.dataset.state = 'error'; status.textContent = 'The security check expired. Please complete it again.'; }
+        };
+        window.onContactTurnstileError = (errorCode) => {
+          const { button, status } = getElements();
+          if (button) button.disabled = true;
+          if (status) {
+            status.dataset.state = 'error';
+            status.textContent = String(errorCode) === '110200'
+              ? 'This address is not authorized for the security check. Please email me directly instead.'
+              : 'The security check could not load. Please email me directly instead.';
+          }
+          return true;
+        };
+        window.onContactTurnstileLoadError = () => window.onContactTurnstileError();
+      })();
+    </script>
+    <script async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js" onerror="onContactTurnstileLoadError()"></script>
+  </>}
 </BaseLayout>

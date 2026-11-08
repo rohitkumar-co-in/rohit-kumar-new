@@ -1,11 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="brand" x1="5" y1="4" x2="60" y2="62" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7548F5"/>
-      <stop offset="1" stop-color="#4A22B8"/>
+    <linearGradient id="tile" x1="8" y1="5" x2="57" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8057F5"/>
+      <stop offset=".55" stop-color="#6338D7"/>
+      <stop offset="1" stop-color="#3E218D"/>
+    </linearGradient>
+    <linearGradient id="glyph" x1="16" y1="25" x2="48" y2="41" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E6DCFF"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="20" fill="url(#brand)"/>
-  <text x="11" y="49" fill="#fff" font-family="Sora, sans-serif" font-size="45" font-weight="700" letter-spacing="-3">R</text>
-  <circle cx="50" cy="44" r="3.5" fill="#CDBDFF"/>
+  <rect x="1" y="1" width="62" height="62" rx="17" fill="url(#tile)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" stroke="#FFFFFF" stroke-opacity=".28"/>
+  <path d="M8 17a5 5 0 0 1 5-5h38a5 5 0 0 1 5 5v5H8v-5Z" fill="#FFFFFF" fill-opacity=".1"/>
+  <path d="M8 23h48" stroke="#FFFFFF" stroke-opacity=".2"/>
+  <circle cx="15" cy="17" r="1.8" fill="#F5F1FF"/>
+  <circle cx="21" cy="17" r="1.8" fill="#D7C9FF"/>
+  <circle cx="27" cy="17" r="1.8" fill="#B99FFF"/>
+  <path d="m25 28-7 7 7 7m14-14 7 7-7 7" stroke="url(#glyph)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m35 28-6 14" stroke="#C9B5FF" stroke-width="3.4" stroke-linecap="round"/>
 </svg>

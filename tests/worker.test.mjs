@@ -5,6 +5,7 @@ import worker from '../src/worker.ts';
 const env = {
   BOT_TOKEN: 'test-bot-token',
   USER_ID: 'test-user-id',
+  TURNSTILE_SECRET_KEY: 'test-turnstile-secret',
   ASSETS: { fetch: async () => new Response('static asset') },
 };
 
@@ -25,6 +26,7 @@ const validLead = {
   projectType: 'Custom website',
   budget: '$599–$1,500',
   message: 'I need a website that helps my business capture qualified leads.',
+  'cf-turnstile-response': 'valid-test-token',
 };
 
 afterEach(() => mock.restoreAll());
@@ -68,33 +70,66 @@ test('honeypot submissions are accepted without contacting Telegram', async () =
   assert.equal(telegram.mock.callCount(), 0);
 });
 
+test('contact submissions require a valid Turnstile token before delivery', async () => {
+  const requests = mock.method(globalThis, 'fetch', async () => Response.json({
+    success: false,
+    hostname: 'rohitkumar.co.in',
+    action: 'contact',
+  }));
+  const missingToken = await worker.fetch(request('/api/contact', {
+    body: { ...validLead, 'cf-turnstile-response': '' },
+  }), env);
+  assert.equal(missingToken.status, 400);
+
+  const invalidToken = await worker.fetch(request('/api/contact', { body: validLead }), env);
+  assert.equal(invalidToken.status, 400);
+  assert.equal(requests.mock.callCount(), 1);
+  assert.equal(String(requests.mock.calls[0].arguments[0]), 'https://challenges.cloudflare.com/turnstile/v0/siteverify');
+});
+
+test('contact submissions stay closed when the Turnstile secret is missing', async () => {
+  const requestCount = mock.method(globalThis, 'fetch', async () => {
+    throw new Error('No external request should be made without the secret');
+  });
+  const response = await worker.fetch(request('/api/contact', { body: validLead }), { ...env, TURNSTILE_SECRET_KEY: '' });
+  assert.equal(response.status, 503);
+  assert.equal(requestCount.mock.callCount(), 0);
+});
+
 test('valid contact submissions are sent to Telegram', async () => {
-  const telegram = mock.method(globalThis, 'fetch', async () => Response.json({ ok: true }));
+  const telegram = mock.method(globalThis, 'fetch', async (url) => String(url).includes('/siteverify')
+    ? Response.json({ success: true, hostname: 'rohitkumar.co.in', action: 'contact' })
+    : Response.json({ ok: true }));
   const response = await worker.fetch(request('/api/contact', { body: validLead }), env);
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { ok: true });
-  assert.equal(telegram.mock.callCount(), 1);
-  assert.equal(telegram.mock.calls[0].arguments[0], `https://api.telegram.org/bot${env.BOT_TOKEN}/sendMessage`);
-  const payload = JSON.parse(telegram.mock.calls[0].arguments[1].body);
+  assert.equal(telegram.mock.callCount(), 2);
+  assert.equal(telegram.mock.calls[0].arguments[0], 'https://challenges.cloudflare.com/turnstile/v0/siteverify');
+  assert.equal(telegram.mock.calls[1].arguments[0], `https://api.telegram.org/bot${env.BOT_TOKEN}/sendMessage`);
+  const payload = JSON.parse(telegram.mock.calls[1].arguments[1].body);
   assert.equal(payload.chat_id, env.USER_ID);
   assert.match(payload.text, /client@example\.com/);
   assert.match(payload.text, /qualified leads/);
 });
 
 test('contact fields strip control characters before delivery', async () => {
-  const telegram = mock.method(globalThis, 'fetch', async () => Response.json({ ok: true }));
+  const telegram = mock.method(globalThis, 'fetch', async (url) => String(url).includes('/siteverify')
+    ? Response.json({ success: true, hostname: 'rohitkumar.co.in', action: 'contact' })
+    : Response.json({ ok: true }));
   const response = await worker.fetch(request('/api/contact', {
     body: { ...validLead, name: 'Rohit\u0000 Kumar', message: 'Please build\u0007 a useful lead capture website.' },
   }), env);
   assert.equal(response.status, 200);
-  const payload = JSON.parse(telegram.mock.calls[0].arguments[1].body);
+  const payload = JSON.parse(telegram.mock.calls[1].arguments[1].body);
   assert.match(payload.text, /Name: Rohit Kumar/);
   assert.equal(payload.text.includes('\u0000'), false);
   assert.equal(payload.text.includes('\u0007'), false);
 });
 
-test('Telegram failures return a safe delivery error', async () => {
-  mock.method(globalThis, 'fetch', async () => Response.json({ ok: false }, { status: 500 }));
+test('delivery failures return a safe email fallback', async () => {
+  mock.method(globalThis, 'fetch', async (url) => String(url).includes('/siteverify')
+    ? Response.json({ success: true, hostname: 'rohitkumar.co.in', action: 'contact' })
+    : Response.json({ ok: false }, { status: 500 }));
   const response = await worker.fetch(request('/api/contact', { body: validLead }), env);
   assert.equal(response.status, 502);
   assert.match((await response.json()).error, /email me instead/);

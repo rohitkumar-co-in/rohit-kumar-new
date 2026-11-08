@@ -1,6 +1,6 @@
 # Rohit Kumar — Portfolio
 
-A multi-page developer and product-building portfolio for Rohit Kumar. It presents custom websites, software, APIs, automation, and business-focused project work.
+A multi-page portfolio for Rohit Kumar, showcasing web development and automation through products built to solve business problems, capture leads, and reduce repetitive work.
 
 ## Stack
 
@@ -14,7 +14,7 @@ A multi-page developer and product-building portfolio for Rohit Kumar. It presen
 Use Node.js 22.23.4 or newer and npm.
 
 1. Install dependencies with `npm install`.
-2. Create `local.env` in the project root with `BOT_TOKEN` and `USER_ID` for the Telegram lead destination. Keep this file private; it is ignored by Git.
+2. If you don’t already have `local.env`, copy `local.env.example` to create it. Add `PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` to your existing `local.env` without replacing your Telegram credentials. Keep `local.env` private; it is ignored by Git. The public site key is embedded in the contact page at build time; the secret stays in the Worker environment. Register the local development host (`localhost`) and production domain in the Turnstile widget settings.
 3. Run `npm run dev` and open `http://localhost:4321`.
 
 The dev script builds the static pages, writes temporary Wrangler variables from `local.env`, and removes the temporary file when the process exits.
@@ -27,11 +27,11 @@ The dev script builds the static pages, writes temporary Wrangler variables from
 
 ## Deployment
 
-Deploy with `npm run deploy`. Configure `BOT_TOKEN` and `USER_ID` as Cloudflare Worker secrets before publishing; do not commit local credentials or add them to public build assets.
+Deploy with `npm run deploy`. Configure `BOT_TOKEN`, `USER_ID`, and `TURNSTILE_SECRET_KEY` as Cloudflare Worker secrets before publishing. Set `PUBLIC_TURNSTILE_SITE_KEY` in the build environment so Astro can render the Turnstile widget. Never publish or commit the secret key.
 
 ## Project layout
 
-- `src/pages/` — home, services, work, about, contact, and 404 pages
+- `src/pages/` — home, services, projects, about, contact, and 404 pages
 - `src/components/` — shared page components
 - `src/data/site.ts` — portfolio and project content
 - `src/styles/global.css` — site-wide styles

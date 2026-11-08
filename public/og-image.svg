@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="background" x1="44" y1="20" x2="1144" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBFAFD"/>
+      <stop offset="1" stop-color="#F1ECFA"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(370 0 0 316 1004 226)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CDBBFF" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#CDBBFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="violet" x1="78" y1="275" x2="614" y2="355" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7042E8"/>
+      <stop offset="1" stop-color="#4A22B8"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="887" y1="266" x2="1016" y2="389" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8057F5"/>
+      <stop offset="1" stop-color="#4A22B8"/>
+    </linearGradient>
+    <filter id="card-shadow" x="-30%" y="-40%" width="160%" height="190%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="15" flood-color="#4A22B8" flood-opacity=".12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#8A65F5" fill-opacity=".12"/>
+    </pattern>
+  </defs>
+
+  <path fill="url(#background)" d="M0 0h1200v630H0z"/>
+  <path fill="url(#glow)" d="M0 0h1200v630H0z"/>
+  <path d="M680 0h520v630H680z" fill="url(#grid)" opacity=".36"/>
+
+  <g transform="translate(66 52)">
+    <rect width="56" height="56" rx="17" fill="url(#hub)"/>
+    <path d="M17 19h6" stroke="#D7C9FF" stroke-width="2.7" stroke-linecap="round"/>
+    <circle cx="13.5" cy="19" r="3.5" fill="#D7C9FF"/>
+    <g transform="scale(.875)">
+      <path fill="#fff" fill-rule="evenodd" d="M23 49V15h13.2c9.5 0 15.1 5 15.1 13 0 6.1-3.1 9.9-8.6 11.7L52 49H40.5l-9.2-10v10H23Zm8.3-18h4.2c3.7 0 5.5-.9 5.5-3.3 0-2.4-1.8-3.4-5.5-3.4h-4.2V31Z"/>
+    </g>
+  </g>
+  <text x="140" y="79" fill="#1D1533" font-family="Sora, 'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="-.7">Rohit Kumar</text>
+  <text x="141" y="104" fill="#6A6084" font-family="'DM Sans', 'Segoe UI', Arial, sans-serif" font-size="14" font-weight="500">Web Development &amp; Automation</text>
+  <rect x="917" y="57" width="218" height="37" rx="18.5" fill="#fff" fill-opacity=".78" stroke="#fff" stroke-width="1.5"/>
+  <circle cx="937" cy="75.5" r="4" fill="#6C3CF0"/>
+  <text x="951" y="80" fill="#4A22B8" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="10.5" font-weight="500" letter-spacing=".9">FOUNDER OF LEADOMI</text>
+
+  <text x="68" y="203" fill="#4A22B8" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="13" font-weight="500" letter-spacing="1.4">WEB DEVELOPMENT &amp; AUTOMATION</text>
+  <text x="64" y="290" fill="#1D1533" font-family="Sora, 'Segoe UI', Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-2.5">Websites, software,</text>
+  <text x="64" y="354" fill="url(#violet)" font-family="Sora, 'Segoe UI', Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-2.5">APIs &amp; automation.</text>
+  <text x="68" y="408" fill="#4B4266" font-family="'DM Sans', 'Segoe UI', Arial, sans-serif" font-size="18.5" font-weight="400">I build websites and software to help your business grow.</text>
+  <text x="68" y="474" fill="#6A6084" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="11.5" font-weight="500" letter-spacing="1.05">LEAD GENERATION  ·  BUSINESS SOFTWARE  ·  AUTOMATION</text>
+
+  <g aria-label="Workflow diagram">
+    <circle cx="950" cy="326" r="211" stroke="#B9A2FF" stroke-opacity=".28" stroke-width="1.5" stroke-dasharray="3 9"/>
+    <circle cx="950" cy="326" r="176" stroke="#fff" stroke-opacity=".85" stroke-width="1.5"/>
+    <path d="M853 250c22 7 36 20 53 38m105-26c-19 7-37 19-52 36m-44 80c-13 24-28 40-50 54" stroke="#8A65F5" stroke-opacity=".55" stroke-width="2" stroke-dasharray="4 7" stroke-linecap="round"/>
+
+    <g filter="url(#card-shadow)">
+      <rect x="706" y="183" width="184" height="82" rx="17" fill="#fff" fill-opacity=".94" stroke="#fff" stroke-width="1.5"/>
+      <circle cx="730" cy="208" r="9" fill="#ECE4FF"/><path d="M727 208h6m-3-3v6" stroke="#6C3CF0" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="748" y="211" fill="#4A22B8" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="10" font-weight="500" letter-spacing=".7">CAPTURE</text>
+      <text x="728" y="243" fill="#1D1533" font-family="'DM Sans', 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="600">New inquiries</text>
+
+      <rect x="1008" y="218" width="174" height="82" rx="17" fill="#fff" fill-opacity=".94" stroke="#fff" stroke-width="1.5"/>
+      <circle cx="1032" cy="243" r="9" fill="#ECE4FF"/><path d="M1028 243h8m-3-3 3 3-3 3" stroke="#6C3CF0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="1050" y="246" fill="#4A22B8" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="10" font-weight="500" letter-spacing=".7">CONNECT</text>
+      <text x="1030" y="278" fill="#1D1533" font-family="'DM Sans', 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="600">Tools &amp; data</text>
+
+      <rect x="839" y="423" width="204" height="82" rx="17" fill="#fff" fill-opacity=".94" stroke="#fff" stroke-width="1.5"/>
+      <circle cx="863" cy="448" r="9" fill="#ECE4FF"/><path d="M858 449a5 5 0 0 1 8-4m0 0v-3m0 3h-3m5 2a5 5 0 0 1-8 4m0 0v3m0-3h3" stroke="#6C3CF0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="881" y="451" fill="#4A22B8" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="10" font-weight="500" letter-spacing=".7">AUTOMATE</text>
+      <text x="861" y="483" fill="#1D1533" font-family="'DM Sans', 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="600">Repeat tasks</text>
+    </g>
+
+    <circle cx="950" cy="326" r="65" fill="url(#hub)"/>
+    <circle cx="950" cy="326" r="45" stroke="#fff" stroke-opacity=".28"/>
+    <path d="M950 309v34m-17-17h34m-29-12 24 24m0-24-24 24" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="950" cy="309" r="4.5" fill="#fff"/><circle cx="933" cy="326" r="4.5" fill="#fff"/><circle cx="967" cy="326" r="4.5" fill="#fff"/><circle cx="950" cy="343" r="4.5" fill="#fff"/>
+  </g>
+
+  <path d="M68 542h1064" stroke="#DCD2F5" stroke-width="1.5"/>
+  <text x="68" y="578" fill="#6A6084" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="12.5" font-weight="500" letter-spacing="1.2">ROHIT KUMAR</text>
+  <text x="1132" y="578" text-anchor="end" fill="#4A22B8" font-family="'DM Mono', 'Segoe UI Mono', monospace" font-size="14" font-weight="500" letter-spacing="1.1">ROHITKUMAR.CO.IN</text>
+</svg>

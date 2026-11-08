@@ -11,7 +11,9 @@ if (!token || !userId) {
 
 const varsPath = resolve('.dev.vars');
 try {
-  await writeFile(varsPath, `BOT_TOKEN=${JSON.stringify(token)}\nUSER_ID=${JSON.stringify(userId)}\n`, { mode: 0o600, flag: 'wx' });
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY?.trim();
+  const workerVars = `BOT_TOKEN=${JSON.stringify(token)}\nUSER_ID=${JSON.stringify(userId)}\n${turnstileSecret ? `TURNSTILE_SECRET_KEY=${JSON.stringify(turnstileSecret)}\n` : ''}`;
+  await writeFile(varsPath, workerVars, { mode: 0o600, flag: 'wx' });
 } catch (error) {
   if (error.code === 'EEXIST') {
     console.error('Remove the existing .dev.vars file before using the local.env dev launcher.');

@@ -1,11 +1,3 @@
 ---
-interface Props { instance: 'header' | 'footer'; }
-const { instance } = Astro.props;
-const gradientId = `wordmark-gradient-${instance}`;
 ---
-<svg class="wordmark-icon" width="42" height="42" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-  <defs><linearGradient id={gradientId} x1="5" y1="4" x2="60" y2="62" gradientUnits="userSpaceOnUse"><stop stop-color="#7548F5" /><stop offset="1" stop-color="#4A22B8" /></linearGradient></defs>
-  <rect width="64" height="64" rx="20" fill={`url(#${gradientId})`} />
-  <text x="11" y="49" fill="#fff" font-family="Sora, sans-serif" font-size="45" font-weight="700" letter-spacing="-3">R</text>
-  <circle cx="50" cy="44" r="3.5" fill="#CDBDFF" />
-</svg>
+<img class="wordmark-icon" src="/brand-mark.svg" width="42" height="42" alt="" aria-hidden="true" />

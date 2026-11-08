@@ -1,5 +1,5 @@
 ---
-interface Props { name: 'arrow' | 'spark' | 'menu' | 'close' | 'external' | 'check' | 'code' | 'laptop' }
+interface Props { name: 'arrow' | 'spark' | 'menu' | 'close' | 'external' | 'check' | 'code' }
 const { name } = Astro.props;
 ---
 <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -10,5 +10,4 @@ const { name } = Astro.props;
   {name === 'close' && <><path d="m6 6 12 12M18 6 6 18" /></>}
   {name === 'check' && <><path d="m5 12 4.3 4.3L19 6.8" /></>}
   {name === 'code' && <><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" /></>}
-  {name === 'laptop' && <><defs><linearGradient id="laptop-icon-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9B7AFF" /><stop offset="1" stop-color="#5A2BE0" /></linearGradient></defs><g stroke="url(#laptop-icon-gradient)"><rect x="4" y="4.5" width="16" height="12" rx="1.6" /><path d="M2.5 19h19l-1.5-2.5h-16L2.5 19Z" /></g></>}
 </svg>

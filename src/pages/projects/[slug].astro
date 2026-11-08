@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import ClosingCTA from '../../components/ClosingCTA.astro';
+import { projects } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+const { project } = Astro.props;
+---
+<BaseLayout title={`${project.name} Case Study | Rohit Kumar`} description={project.summary}>
+  <section class={`case-hero page-shell case-${project.color}`}>
+    <div class="case-topline" data-reveal><a href="/projects/" class="back-link"><Icon name="arrow" /> All projects</a><p class="section-kicker"><span>{project.number}</span> {project.kind}</p></div>
+    <div class="case-intro">
+      <div class="case-heading" data-reveal><h1>{project.name}</h1><p class="case-title">{project.caseTitle}</p></div>
+      <div class="case-summary" data-reveal><p>{project.summary}</p><a class="button button-primary" href={project.url} target="_blank" rel="noreferrer">Visit {project.name} <Icon name="external" /></a></div>
+    </div>
+    <figure class="case-visual" data-reveal><img class="case-screenshot" src={project.screenshot} alt={`${project.name} current homepage`} loading="eager" /></figure>
+  </section>
+  <section class="case-details page-shell"><div class="case-story" data-reveal><p class="section-kicker"><span>01</span> The product</p><h2>{project.caseSectionTitle}</h2><p>{project.caseStory}</p><p>{project.caseBuild}</p></div><aside class="case-facts" data-reveal><div><span>MY PART</span><strong>{project.role}</strong></div><div><span>WHAT IT DOES</span><strong>{project.focus.join(' / ')}</strong></div><div><span>LIVE SITE</span><a href={project.url} target="_blank" rel="noreferrer">{project.url.replace('https://', '')} ↗</a></div></aside></section>
+  <ClosingCTA number="02" />
+</BaseLayout>

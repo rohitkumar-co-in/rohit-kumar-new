@@ -4,7 +4,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Icon from '../components/Icon.astro';
 interface Props { title?: string; description?: string; }
-const { title = 'Rohit Kumar | Business Software & Websites', description = 'I build websites, software, APIs, and custom automations that solve real business problems and help companies capture more leads.' } = Astro.props;
+const { title = 'Rohit Kumar | Web Development & Automation', description = 'I build websites that bring in more leads, software that makes work easier, and automations that save your team time.' } = Astro.props;
 const fullTitle = title;
 ---
 <!doctype html>
@@ -18,7 +18,17 @@ const fullTitle = title;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={`https://rohitkumar.co.in${Astro.url.pathname}`} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:image" content="https://rohitkumar.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rohit Kumar portfolio: websites, software, APIs, and automation for real business needs." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://rohitkumar.co.in/og-image.png" />
+    <meta name="twitter:image:alt" content="Rohit Kumar portfolio: websites, software, APIs, and automation for real business needs." />
+    <link rel="canonical" href={`https://rohitkumar.co.in${Astro.url.pathname}`} />
+    <link rel="icon" type="image/svg+xml" href="/brand-mark.svg" />
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -27,7 +37,6 @@ const fullTitle = title;
   </head>
   <body>
     <div class="site-backdrop" aria-hidden="true"><span class="backdrop-orb orb-a"></span><span class="backdrop-orb orb-b"></span><span class="backdrop-orb orb-c"></span><span class="backdrop-grid"></span></div>
-    <div id="top"></div>
     <SiteHeader />
     <main id="main"><slot /></main>
     <SiteFooter />
@@ -83,6 +92,11 @@ const fullTitle = title;
         if (!form.reportValidity()) return;
         const status = form.querySelector<HTMLElement>('[data-form-status]');
         const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+        const turnstileResponse = new FormData(form).get('cf-turnstile-response');
+        if (form.dataset.turnstileEnabled === 'true' && (typeof turnstileResponse !== 'string' || !turnstileResponse.trim())) {
+          if (status) { status.dataset.state = 'error'; status.textContent = 'Please complete the security check before sending. You can also email me directly.'; }
+          return;
+        }
         if (status) { status.dataset.state = 'sending'; status.textContent = 'Sending your project details…'; }
         if (submitButton) submitButton.disabled = true;
         try {
@@ -91,10 +105,15 @@ const fullTitle = title;
           if (!response.ok || !result.ok) throw new Error(result.error || 'The form service could not accept your enquiry.');
           if (status) { status.dataset.state = 'success'; status.textContent = 'Thanks, your project details have been sent. I’ll be in touch soon.'; }
           form.reset();
-        } catch {
-          if (status) { status.dataset.state = 'error'; status.textContent = 'Your enquiry could not be sent. Please email contact@rohitkumar.co.in instead.'; }
+        } catch (error) {
+          if (status) {
+            status.dataset.state = 'error';
+            status.textContent = error instanceof Error ? error.message : 'Your enquiry could not be sent. Please email me instead.';
+          }
         } finally {
-          if (submitButton) submitButton.disabled = false;
+          if (submitButton) submitButton.disabled = true;
+          const turnstile = (window as Window & { turnstile?: { reset?: () => void } }).turnstile;
+          turnstile?.reset?.();
         }
       });
     </script>
