@@ -1,0 +1,17 @@
+---
+import { navItems } from '../data/site';
+import Icon from './Icon.astro';
+import BrandMark from './BrandMark.astro';
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+      <a href="/" class="wordmark" aria-label="Rohit Kumar home"><BrandMark instance="header" /><span class="wordmark-copy">Rohit Kumar<small>Founder · Business owner</small></span></a>
+    <button type="button" class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav"><Icon name="menu" /><Icon name="close" /></button>
+    <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+      {navItems.map((item) => <a href={item.href} class:list={['nav-link', current === (item.href === '/' ? '/' : item.href.replace(/\/$/, '')) && 'is-active']} aria-current={current === (item.href === '/' ? '/' : item.href.replace(/\/$/, '')) ? 'page' : undefined}>{item.label}</a>)}
+      <a class="nav-cta" href="/contact/">Let’s talk <Icon name="arrow" /></a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,25 @@
+---
+import { email, navItems, socials } from '../data/site';
+import BrandMark from './BrandMark.astro';
+import Icon from './Icon.astro';
+---
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand-block">
+      <a href="/" class="wordmark footer-mark"><BrandMark instance="footer" /><span class="wordmark-copy">Rohit Kumar<small>Founder · Business owner</small></span></a>
+      <p>I build custom websites, software, and APIs around real business problems.</p>
+      <span class="footer-location">I’m the founder of Leadomi <i></i> India</span>
+    </div>
+    <div class="footer-nav-group">
+      <span class="footer-label">Explore</span>
+      <nav class="footer-links" aria-label="Footer navigation">{navItems.map((item) => <a href={item.href}>{item.label}</a>)}</nav>
+    </div>
+    <div class="footer-connect">
+      <span class="footer-label">Have a project in mind?</span>
+      <a class="footer-project-link" href="/contact/">Let’s talk <Icon name="arrow" /></a>
+      <a class="footer-email" href={`mailto:${email}`}>{email}<span>↗</span></a>
+      <div class="footer-socials" aria-label="Social links">{socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer">{social.label}</a>)}</div>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} Rohit Kumar</span><span>I build with intent.</span><a class="back-top" href="#top">Back to top ↑</a></div>
+</footer>

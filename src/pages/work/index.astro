@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/site';
+---
+<BaseLayout title="Projects & Case Studies | Rohit Kumar" description="See how I built Leadomi and OTP Wala to solve real needs in lead capture and phone verification.">
+  <section class="inner-hero page-shell work-hero"><p class="section-kicker" data-reveal><span>01</span> Selected work / 2023—26</p><div class="inner-hero-line"><h1 data-reveal>Real problems.<br /><em>Built solutions.</em></h1><p data-reveal>Products I’ve founded and built to solve real needs—from capturing leads to verifying users.</p></div><div class="work-count" data-reveal><span>02</span> products built <i></i> Explore a project</div><nav class="work-jump" aria-label="Jump to a project" data-reveal>{projects.map((project) => <a href={`#project-${project.slug}`}><span>/{project.number}</span>{project.name}<Icon name="arrow" /></a>)}</nav></section>
+  {projects.map((project) => <section id={`project-${project.slug}`} class="work-index page-shell" aria-label={`${project.name} project`}><div class="work-index-row" data-reveal><span class="work-row-no">/{project.number}</span><div class="work-card-wrap"><ProjectCard project={project} /></div><div class="work-side-caption"><span>{project.role}</span><span>{project.focus.join(' · ')}</span><a href={`/work/${project.slug}/`}>Open case study <Icon name="arrow" /></a></div></div></section>)}
+  <section class="work-end page-shell" data-reveal><span>MORE IN THE WORKS</span><p>I’m learning, building, and finding the next problem to solve.</p><a href="/contact/">Bring me a challenge <Icon name="arrow" /></a></section>
+</BaseLayout>

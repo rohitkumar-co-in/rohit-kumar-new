@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 973 256" width="973" height="256" role="img" aria-labelledby="title">
+  <title id="title">OTPWala</title>
+  <!-- Brand mark and wordmark proportions match the OTPWala site logo. -->
+    <svg x="20" y="16" viewBox="16 16 480 480" width="224" height="224">
+      
+  <defs>
+    <!-- Background Gradient: Deep Royal Indigo to Electric Sapphire -->
+    <linearGradient id="brandFullBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="35%" stop-color="#1e1b4b" />
+      <stop offset="70%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Radial Core Highlight -->
+    <radialGradient id="brandFullCenterGlow" cx="50%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- The "O" Ring Gradient -->
+    <linearGradient id="brandFullORingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#f0f9ff" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+
+    <!-- "W" Monogram Left Wing -->
+    <linearGradient id="brandFullWLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+
+    <!-- "W" Monogram Right Wing -->
+    <linearGradient id="brandFullWRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <!-- Center Security Core Gradient -->
+    <linearGradient id="brandFullVaultCoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="brandFullMainShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#020617" flood-opacity="0.5" />
+    </filter>
+
+    <filter id="brandFullSoftGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Container Squircle with Precision Border -->
+  <rect x="16" y="16" width="480" height="480" rx="118" fill="url(#brandFullBg)" />
+  <rect x="16" y="16" width="480" height="480" rx="118" fill="url(#brandFullCenterGlow)" />
+  <rect x="18" y="18" width="476" height="476" rx="116" fill="none" stroke="rgba(255, 255, 255, 0.22)" stroke-width="3" />
+
+  <!-- Glass Arc Sheen on Top Half -->
+  <path d="M 16 134 C 16 50 50 16 134 16 L 378 16 C 462 16 496 50 496 134 L 496 220 C 330 255 182 255 16 220 Z" fill="#ffffff" opacity="0.08" />
+
+  <!-- Main Emblem Group -->
+  <g>
+    
+    <!-- 1. The Sculpted Outer "O" Shield Ring -->
+    <path 
+      d="M 256,76 
+         C 358,76 436,154 436,256 
+         C 436,334 372,398 256,436 
+         C 140,398 76,334 76,256 
+         C 76,154 154,76 256,76 Z
+         M 256,134
+         C 188,134 134,188 134,256
+         C 134,312 180,360 256,388
+         C 332,360 378,312 378,256
+         C 378,188 324,134 256,134 Z" 
+      fill="url(#brandFullORingGrad)" 
+      fill-rule="evenodd"
+    />
+
+    <!-- 2. The Integrated "W" Monogram (Wala) -->
+    <!-- Left Wing of W -->
+    <path 
+      d="M 172,216
+         L 208,216
+         L 236,326
+         L 204,326
+         Z" 
+      fill="url(#brandFullWLeftGrad)"
+    />
+    <!-- Center Left Wing -->
+    <path 
+      d="M 204,326
+         L 236,326
+         L 256,254
+         L 238,254
+         Z" 
+      fill="#60a5fa"
+    />
+    <!-- Center Right Wing -->
+    <path 
+      d="M 256,254
+         L 274,254
+         L 308,326
+         L 276,326
+         Z" 
+      fill="#3b82f6"
+    />
+    <!-- Right Wing of W -->
+    <path 
+      d="M 304,216
+         L 340,216
+         L 308,326
+         L 276,326
+         Z" 
+      fill="url(#brandFullWRightGrad)"
+    />
+
+    <!-- Top Connection Cap of W -->
+    <rect x="172" y="212" width="36" height="6" rx="3" fill="#ffffff" />
+    <rect x="304" y="212" width="36" height="6" rx="3" fill="#ffffff" />
+
+    <!-- 3. The Security Core: Vault Lock Keyhole & Verification Indicator -->
+    <g filter="url(#brandFullSoftGlow)">
+      <!-- Keyhole circle head -->
+      <circle cx="256" cy="186" r="16" fill="url(#brandFullVaultCoreGrad)" />
+      <!-- Keyhole stem pointing into W -->
+      <path 
+        d="M 248,194 
+           L 264,194 
+           L 267,222 
+           L 245,222 
+           Z" 
+        fill="url(#brandFullVaultCoreGrad)" 
+      />
+    </g>
+
+    <!-- Center Pulse Checkmark Accent in the Core -->
+    <polyline 
+      points="250,186 254,190 262,182" 
+      fill="none" 
+      stroke="#ffffff" 
+      stroke-width="2.8" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+    />
+
+    <!-- 4. Concentric Verification Carrier Beacons (Top Right) -->
+    <!-- Signal Wave 1 -->
+    <path 
+      d="M 364,136 C 382,152 392,174 394,198" 
+      fill="none" 
+      stroke="#38bdf8" 
+      stroke-width="8" 
+      stroke-linecap="round" 
+    />
+    <!-- Signal Wave 2 -->
+    <path 
+      d="M 396,108 C 422,132 436,162 438,198" 
+      fill="none" 
+      stroke="#38bdf8" 
+      stroke-width="8" 
+      stroke-linecap="round" 
+      opacity="0.8" 
+    />
+
+    <!-- Verification Live Dot -->
+    <circle cx="406" cy="98" r="9" fill="#10b981" />
+    <circle cx="406" cy="98" r="4.5" fill="#ffffff" />
+  </g>
+
+    </svg>
+  <!-- Typography outlined as paths so the logo is font-independent. -->
+  <g fill="#0f172a" aria-hidden="true"><path d="M330.29802100811366 198.953125Q305.3788126048682 198.953125 289.6829475716552 183.2890625Q273.9870825384421 167.625 273.9870825384421 142.46875Q273.9870825384421 115.90625 289.9256671340244 99.5Q305.86425172960674 83.09375 332.1588709862781 83.09375Q356.99717286873374 83.09375 372.3289585583929 98.796875Q387.6607442480521 114.5 387.6607442480521 140.203125Q387.6607442480521 166.609375 371.7626129128646 182.78125Q355.86448157767717 198.953125 330.29802100811366 198.953125ZM331.43071229917024 104.8125Q317.6766037649114 104.8125 309.5859516859356 114.7734375Q301.4952996069598 124.734375 301.4952996069598 141.140625Q301.4952996069598 157.78125 309.5859516859356 167.46875Q317.6766037649114 177.15625 330.7834601328522 177.15625Q344.2948491047418 177.15625 352.22368814213803 167.7421875Q360.15252717953433 158.328125 360.15252717953433 141.609375Q360.15252717953433 124.1875 352.46640770450733 114.5Q344.78028822948033 104.8125 331.43071229917024 104.8125Z"/><path d="M479.7550279265406 105.515625H446.6642609235296V197.0H420.450548187648V105.515625H387.5215942262165V84.96875H479.7550279265406Z"/><path d="M519.5027926540557 158.40625V197.0H493.3699864389639V84.96875H534.3086859585815Q578.1600202266302 84.96875 578.1600202266302 120.671875Q578.1600202266302 137.546875 565.5790562438228 147.9765625Q552.9980922610155 158.40625 531.9623968556784 158.40625ZM519.5027926540557 104.34375V139.265625H529.7779207943549Q550.6518031581126 139.265625 550.6518031581126 121.609375Q550.6518031581126 104.34375 529.7779207943549 104.34375Z"/><path d="M747.762750821707 84.96875 717.0991794423887 197.0H688.1346449996553L668.8788930516929 125.125Q667.3416691566875 119.5 667.0180430735285 112.546875H666.6944169903695Q665.9662583032616 120.203125 664.5908474498358 125.125L644.8496563771348 197.0H614.6715241225551L584.1697657848163 84.96875H612.7297676236009L629.072884823132 159.578125Q630.1246695933988 164.34375 630.6101087181374 172.390625H631.0955478428759Q631.419173926035 166.375 633.441836945779 159.265625L654.477532351116 84.96875H682.4711885443722L701.4842209299654 160.203125Q702.5360057002322 164.34375 703.3450709081299 172.234375H703.6686969912888Q703.9923230744479 166.0625 705.3677339278738 159.734375L721.3872250442458 84.96875Z"/><path d="M820.277656469074 197.0H796.0866067529364V185.515625H795.7629806697773Q787.4296090284323 198.953125 771.0864918289012 198.953125Q759.0314202312272 198.953125 752.1139127037029 192.3515625Q745.1964051761786 185.75 745.1964051761786 174.734375Q745.1964051761786 151.453125 773.7564070149632 147.859375L796.2484197945159 144.96875Q796.2484197945159 131.84375 781.52343301078 131.84375Q766.7175397062542 131.84375 753.3679637759442 140.359375V121.765625Q758.7077941480682 119.109375 767.9715907784955 117.078125Q777.2353874089227 115.046875 784.84060036316 115.046875Q820.277656469074 115.046875 820.277656469074 149.1875ZM796.2484197945159 164.5V159.109375L781.1998069276209 160.984375Q768.7402027259982 162.546875 768.7402027259982 171.84375Q768.7402027259982 176.0625 771.7741972556141 178.7578125Q774.8081917852301 181.453125 779.9862091157745 181.453125Q787.186889466063 181.453125 791.7176546302894 176.6484375Q796.2484197945159 171.84375 796.2484197945159 164.5Z"/><path d="M864.0707472360771 197.0H838.5042866665135V78.5625H864.0707472360771Z"/><path d="M952.5242374790264 197.0H928.3331877628888V185.515625H928.0095616797297Q919.6761900383847 198.953125 903.3330728388536 198.953125Q891.2780012411796 198.953125 884.3604937136553 192.3515625Q877.442986186131 185.75 877.442986186131 174.734375Q877.442986186131 151.453125 906.0029880249156 147.859375L928.4950008044683 144.96875Q928.4950008044683 131.84375 913.7700140207323 131.84375Q898.9641207162066 131.84375 885.6145447858966 140.359375V121.765625Q890.9543751580205 119.109375 900.2181717884478 117.078125Q909.4819684188751 115.046875 917.0871813731123 115.046875Q952.5242374790264 115.046875 952.5242374790264 149.1875ZM928.4950008044683 164.5V159.109375L913.4463879375733 160.984375Q900.9867837359506 162.546875 900.9867837359506 171.84375Q900.9867837359506 176.0625 904.0207782655665 178.7578125Q907.0547727951824 181.453125 912.2327901257269 181.453125Q919.4334704760154 181.453125 923.9642356402419 176.6484375Q928.4950008044683 171.84375 928.4950008044683 164.5Z"/></g>
+</svg>

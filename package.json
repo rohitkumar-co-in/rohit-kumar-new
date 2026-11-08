@@ -1,0 +1,17 @@
+{
+  "name": "rohit-kumar-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm run build && node --env-file=local.env scripts/dev-worker.mjs 4321",
+    "build": "astro build",
+    "preview": "npm run build && node --env-file=local.env scripts/dev-worker.mjs 4322",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "astro": "5.3.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.158.0"
+  }
+}
