@@ -21,5 +21,5 @@ import Icon from './Icon.astro';
       <div class="footer-socials" aria-label="Social links">{socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer">{social.label}</a>)}</div>
     </div>
   </div>
-  <div class="footer-bottom"><span>© {new Date().getFullYear()} Rohit Kumar</span><span>I build with intent.</span><a class="back-top" href="#top">Back to top ↑</a></div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} Rohit Kumar</span><span class="footer-credit">Made with <Icon name="laptop" /> by Rohit</span><a class="back-top" href="#top">Back to top ↑</a></div>
 </footer>

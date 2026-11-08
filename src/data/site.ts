@@ -34,7 +34,7 @@ export const projects = [
     screenshot: '/images/otpwala.webp',
     logo: '/images/otpwala-logo.svg',
     number: '02',
-    color: 'orange',
+    color: 'purple',
     summary: 'I built OTP Wala to make adding phone verification more direct for developers.',
     role: 'Product engineering · API',
     focus: ['API design', 'Verification flows', 'Launch-ready software'],
