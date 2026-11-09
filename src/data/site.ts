@@ -51,7 +51,7 @@ export const projects = [
 
 export const services = [
   { index: '01', title: 'Websites that bring in more leads', text: 'Clear pages and calls to action help turn visitors into customer inquiries.', mark: '↗' },
-  { index: '02', title: 'Software that saves your team time', text: 'Custom tools replace clunky workarounds and make daily tasks easier.', mark: '⌘' },
+  { index: '02', title: 'Custom software / SaaS', text: 'Custom tools replace clunky workarounds and make daily tasks easier.', mark: '⌘' },
   { index: '03', title: 'APIs and custom automations', text: 'Connect your tools and handle repeat tasks automatically, so your team has more time for customers.', mark: '{ }' },
 ];
 

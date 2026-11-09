@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { email, projectPricingNote, socials } from '../data/site';
+import { email, socials } from '../data/site';
 ---
 <BaseLayout title="Start a Project | Rohit Kumar" description="Tell me what you want to improve. I build websites, software, and automations to bring in more leads and save your team time. Projects start at $599.">
   <section class="contact-hero page-shell"><div class="contact-intro"><p class="section-kicker" data-reveal>Contact / New project</p><h1 data-reveal>What do you want<br /><em>to improve?</em></h1><p data-reveal>Tell me what’s costing you leads, taking too much time, or getting in the way of a new idea.</p><a class="contact-direct" href={`mailto:${email}`} data-reveal><span>Prefer email?</span><strong>{email} ↗</strong></a><div class="contact-social" data-reveal><span>FIND ME ELSEWHERE</span>{socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer">{social.label} ↗</a>)}</div><div class="contact-deco" aria-hidden="true"><span>LET’S</span><b>SOLVE IT</b><i>✳</i></div></div>
@@ -10,12 +10,33 @@ import { email, projectPricingNote, socials } from '../data/site';
     <div class="form-heading"><span>PROJECT ENQUIRY</span><span>01 — 05</span></div>
     <label class="form-field"><span>Your name <i>*</i></span><input name="name" type="text" autocomplete="name" placeholder="What should I call you?" required minlength="2" /></label>
     <label class="form-field"><span>Email address <i>*</i></span><input name="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
-    <div class="form-split"><label class="form-field"><span>What do you need?</span><select name="projectType"><option value="">Pick one</option><option>Website to bring in more leads</option><option>Business software / product</option><option>API / integration</option><option>Automation to save time</option><option>Something else</option></select></label><label class="form-field"><span>Budget range</span><select name="budget"><option value="">Not sure yet</option><option>$599–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option><option>Let’s discuss</option></select></label></div>
+    <div class="form-split">
+      <div class="form-field"><span id="project-type-label">What do you need?</span><div class="custom-select" data-custom-select>
+        <input type="hidden" name="projectType" value="" />
+        <button type="button" class="custom-select-trigger" aria-labelledby="project-type-label project-type-value" aria-haspopup="listbox" aria-expanded="false" aria-controls="project-type-options"><span id="project-type-value">Select a service</span><Icon name="chevron" /></button>
+        <div class="custom-select-options" id="project-type-options" role="listbox" aria-labelledby="project-type-label" hidden>
+          <button type="button" role="option" aria-selected="false" data-value="Website to bring in more leads">Website to bring in more leads</button>
+          <button type="button" role="option" aria-selected="false" data-value="Custom software / SaaS">Custom software / SaaS</button>
+          <button type="button" role="option" aria-selected="false" data-value="API / integration">API / integration</button>
+          <button type="button" role="option" aria-selected="false" data-value="Automation to save time">Automation to save time</button>
+          <button type="button" role="option" aria-selected="false" data-value="Something else">Something else</button>
+        </div>
+      </div></div>
+      <div class="form-field"><span id="budget-label">Budget range</span><div class="custom-select" data-custom-select>
+        <input type="hidden" name="budget" value="" />
+        <button type="button" class="custom-select-trigger" aria-labelledby="budget-label budget-value" aria-haspopup="listbox" aria-expanded="false" aria-controls="budget-options"><span id="budget-value">Not sure yet</span><Icon name="chevron" /></button>
+        <div class="custom-select-options" id="budget-options" role="listbox" aria-labelledby="budget-label" hidden>
+          <button type="button" role="option" aria-selected="false" data-value="$599–$1,500">$599–$1,500</button>
+          <button type="button" role="option" aria-selected="false" data-value="$1,500–$5,000">$1,500–$5,000</button>
+          <button type="button" role="option" aria-selected="false" data-value="$5,000+">$5,000+</button>
+        </div>
+      </div></div>
+    </div>
     <label class="form-field"><span>What are you trying to fix? <i>*</i></span><textarea name="message" rows="5" placeholder="What’s taking too much time or costing you leads?" required minlength="15"></textarea></label>
     <div data-turnstile-mount></div>
-    <p class="form-status" data-turnstile-status role="status" aria-live="polite">Loading the security check…</p>
+    <p class="form-status" data-turnstile-status role="status" aria-live="polite"></p>
     <p class="turnstile-setup-note" data-turnstile-fallback hidden>The form is unavailable right now. <a href={`mailto:${email}`}>Email me directly</a>.</p>
-    <div class="form-submit-row"><p>{projectPricingNote}</p><button type="submit" class="button button-primary" disabled>Send project details <Icon name="arrow" /></button></div>
+    <div class="form-submit-row"><button type="submit" class="button button-primary" disabled>Send project details <Icon name="arrow" /></button></div>
     <p class="form-status" data-form-status role="status" aria-live="polite"></p>
     <p class="form-note">Prefer email? <a href={`mailto:${email}`}>Reach me directly</a>.</p>
   </form></section>
@@ -40,7 +61,7 @@ import { email, projectPricingNote, socials } from '../data/site';
         button.disabled = false;
         form.dataset.turnstileEnabled = 'true';
         status.dataset.state = 'success';
-        status.textContent = 'Security check complete.';
+        status.textContent = '';
       };
       window.onContactTurnstileExpired = () => {
         button.disabled = true;
@@ -71,7 +92,7 @@ import { email, projectPricingNote, socials } from '../data/site';
           widget.dataset.expiredCallback = 'onContactTurnstileExpired';
           widget.dataset.timeoutCallback = 'onContactTurnstileExpired';
           mount.append(widget);
-          status.textContent = 'Complete the security check to enable sending.';
+          status.textContent = '';
 
           const script = document.createElement('script');
           script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
@@ -81,6 +102,74 @@ import { email, projectPricingNote, socials } from '../data/site';
           document.head.append(script);
         })
         .catch(() => setUnavailable());
+
+      const selectors = [...form.querySelectorAll('[data-custom-select]')];
+      const closeSelector = (selector, restoreFocus = false) => {
+        const trigger = selector.querySelector('.custom-select-trigger');
+        const options = selector.querySelector('.custom-select-options');
+        trigger?.setAttribute('aria-expanded', 'false');
+        if (options) options.hidden = true;
+        if (restoreFocus) trigger?.focus();
+      };
+
+      selectors.forEach((selector) => {
+        const trigger = selector.querySelector('.custom-select-trigger');
+        const options = selector.querySelector('.custom-select-options');
+        const valueInput = selector.querySelector('input[type="hidden"]');
+        const valueLabel = trigger?.querySelector('span');
+        const optionButtons = [...(options?.querySelectorAll('[role="option"]') ?? [])];
+        if (!trigger || !options || !valueInput || !valueLabel) return;
+
+        const openSelector = (focusLast = false) => {
+          selectors.forEach((other) => { if (other !== selector) closeSelector(other); });
+          options.hidden = false;
+          trigger.setAttribute('aria-expanded', 'true');
+          (focusLast ? optionButtons.at(-1) : optionButtons[0])?.focus();
+        };
+
+        trigger.addEventListener('click', () => {
+          if (trigger.getAttribute('aria-expanded') === 'true') closeSelector(selector);
+          else openSelector();
+        });
+
+        trigger.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openSelector();
+          } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            openSelector(true);
+          }
+        });
+
+        options.addEventListener('keydown', (event) => {
+          const currentIndex = optionButtons.indexOf(document.activeElement);
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeSelector(selector, true);
+          } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            const direction = event.key === 'ArrowDown' ? 1 : -1;
+            optionButtons[(currentIndex + direction + optionButtons.length) % optionButtons.length]?.focus();
+          } else if (event.key === 'Home' || event.key === 'End') {
+            event.preventDefault();
+            (event.key === 'Home' ? optionButtons[0] : optionButtons.at(-1))?.focus();
+          } else if (event.key === 'Tab') closeSelector(selector);
+        });
+
+        optionButtons.forEach((option) => option.addEventListener('click', () => {
+          valueInput.value = option.dataset.value ?? '';
+          valueLabel.textContent = option.textContent?.trim() ?? '';
+          optionButtons.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+          closeSelector(selector, true);
+        }));
+      });
+
+      document.addEventListener('click', (event) => {
+        selectors.forEach((selector) => {
+          if (!selector.contains(event.target)) closeSelector(selector);
+        });
+      });
     })();
   </script>
 </BaseLayout>
