@@ -1,6 +1,7 @@
 interface Env {
   BOT_TOKEN?: string;
   USER_ID?: string;
+  PUBLIC_TURNSTILE_SITE_KEY?: string;
   TURNSTILE_SECRET_KEY?: string;
   ASSETS: { fetch(request: Request): Promise<Response> };
 }
@@ -117,6 +118,12 @@ export default {
     if (url.pathname === '/work' || url.pathname.startsWith('/work/')) {
       url.pathname = url.pathname.replace(/^\/work(?=\/|$)/, '/projects');
       return Response.redirect(url.toString(), 308);
+    }
+    if (url.pathname === '/api/turnstile-config') {
+      if (request.method !== 'GET') return json({ ok: false, error: 'Method not allowed.' }, 405);
+      const origin = request.headers.get('Origin');
+      if (origin && origin !== url.origin) return json({ ok: false, error: 'Request origin is not allowed.' }, 403);
+      return json({ siteKey: text(env.PUBLIC_TURNSTILE_SITE_KEY, 200) });
     }
     if (url.pathname === '/api/contact') {
       if (request.method !== 'POST') return json({ ok: false, error: 'Method not allowed.' }, 405);

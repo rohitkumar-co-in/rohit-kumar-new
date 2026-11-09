@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 
 const token = process.env.BOT_TOKEN?.trim();
 const userId = process.env.USER_ID?.trim();
+const turnstileSiteKey = process.env.PUBLIC_TURNSTILE_SITE_KEY?.trim();
 if (!token || !userId) {
   console.error('local.env must define non-empty BOT_TOKEN and USER_ID values.');
   process.exit(1);
@@ -24,7 +25,9 @@ try {
 }
 
 const port = process.argv[2] || '4321';
-const wrangler = spawn(process.execPath, ['node_modules/wrangler/bin/wrangler.js', 'dev', '--port', port, '--ip', '127.0.0.1'], {
+const wranglerArgs = ['node_modules/wrangler/bin/wrangler.js', 'dev', '--port', port, '--ip', '127.0.0.1'];
+if (turnstileSiteKey) wranglerArgs.push('--var', `PUBLIC_TURNSTILE_SITE_KEY:${turnstileSiteKey}`);
+const wrangler = spawn(process.execPath, wranglerArgs, {
   stdio: 'inherit',
 });
 

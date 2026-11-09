@@ -5,6 +5,7 @@ import worker from '../src/worker.ts';
 const env = {
   BOT_TOKEN: 'test-bot-token',
   USER_ID: 'test-user-id',
+  PUBLIC_TURNSTILE_SITE_KEY: 'test-public-turnstile-key',
   TURNSTILE_SECRET_KEY: 'test-turnstile-secret',
   ASSETS: { fetch: async () => new Response('static asset') },
 };
@@ -35,6 +36,21 @@ test('contact route rejects methods other than POST', async () => {
   const response = await worker.fetch(request('/api/contact', { method: 'GET' }), env);
   assert.equal(response.status, 405);
   assert.deepEqual(await response.json(), { ok: false, error: 'Method not allowed.' });
+});
+
+test('Turnstile config returns only the public site key to the contact page', async () => {
+  const response = await worker.fetch(request('/api/turnstile-config', { method: 'GET' }), env);
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { siteKey: env.PUBLIC_TURNSTILE_SITE_KEY });
+
+  const wrongMethod = await worker.fetch(request('/api/turnstile-config'), env);
+  assert.equal(wrongMethod.status, 405);
+
+  const wrongOrigin = await worker.fetch(request('/api/turnstile-config', {
+    method: 'GET',
+    origin: 'https://attacker.example',
+  }), env);
+  assert.equal(wrongOrigin.status, 403);
 });
 
 test('contact route rejects missing and mismatched origins', async () => {
