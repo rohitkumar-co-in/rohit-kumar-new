@@ -33,6 +33,20 @@ Set the four variables above in `local.env` or the deployment environment, then 
 
 After the first deploy, attach `rohitkumar.co.in` as a custom domain to the `rohitkumar-portfolio` Worker in Cloudflare if it is not already attached. Confirm the Turnstile widget allows the production hostname. Never commit `local.env`, `.dev.vars`, or any file containing secrets.
 
+### Automatic deployment from GitHub
+
+The GitHub Actions workflow at `.github/workflows/deploy-worker.yml` builds and deploys the Worker after every push to `main`. It can also be started manually from the repository’s **Actions** tab. The Cloudflare account ID is read from `wrangler.jsonc`.
+
+Before the first workflow run, add these repository **Actions secrets** in GitHub under **Settings → Secrets and variables → Actions**:
+
+- `CLOUDFLARE_API_TOKEN` — an account API token with **Edit Cloudflare Workers** permission, scoped to this Cloudflare account.
+- `BOT_TOKEN`
+- `USER_ID`
+- `TURNSTILE_SECRET_KEY`
+- `PUBLIC_TURNSTILE_SITE_KEY`
+
+Keep the Cloudflare API token and Worker secrets in GitHub Actions secrets. Do not add them to the workflow file or commit them to the repository.
+
 ## Pages
 
 - `/` — portfolio homepage
