@@ -64,7 +64,7 @@ const tickerItems = ['Custom software', 'Built for your business', 'AI where it 
     <div class="section-heading" data-reveal><div><p class="section-kicker"><span>01</span> Selected projects</p><h2 id="selected-projects-title">I build to fix real problems.<br /><em>So your business can grow.</em></h2></div><a class="section-link" href="/projects/">All projects <Icon name="arrow" /></a></div>
   </section>
 
-  {projects.map((project) => <section class="project-highlight page-shell" aria-label={`${project.name} featured project`}>
+  {projects.slice(0, 3).map((project) => <section class="project-highlight page-shell" aria-label={`${project.name} featured project`}>
     <div class="project-feature-card" data-reveal><ProjectCard project={project} /></div>
   </section>)}
 
