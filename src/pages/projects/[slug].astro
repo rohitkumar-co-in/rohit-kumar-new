@@ -9,7 +9,7 @@ export function getStaticPaths() {
 }
 const { project } = Astro.props;
 ---
-<BaseLayout title={`${project.name} Case Study | Rohit Kumar`} description={project.summary}>
+<BaseLayout description={project.summary}>
   <section class={`case-hero page-shell case-${project.color}`}>
     <div class="case-topline" data-reveal><a href="/projects/" class="back-link"><Icon name="arrow" /> All projects</a><p class="section-kicker"><span>{project.number}</span> {project.kind}</p></div>
     <div class="case-intro">

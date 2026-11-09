@@ -3,9 +3,9 @@ import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Icon from '../components/Icon.astro';
-interface Props { title?: string; description?: string; noindex?: boolean; }
-const { title = 'Rohit Kumar | Software & Automation', description = 'I build lead-focused websites, custom software and SaaS, APIs, and automations that solve business problems, save time, and support growth.', noindex = false } = Astro.props;
-const fullTitle = title;
+interface Props { description?: string; noindex?: boolean; }
+const { description = 'I build lead-focused websites, custom software and SaaS, APIs, and automations that solve business problems, save time, and support growth.', noindex = false } = Astro.props;
+const fullTitle = 'Rohit Kumar | Software & Automation';
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
