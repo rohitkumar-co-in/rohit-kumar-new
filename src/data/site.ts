@@ -5,7 +5,7 @@ export const navItems = [
   { label: 'About', href: '/about/' },
 ];
 
-export const brandDescriptor = 'Web Development & Automation';
+export const brandDescriptor = 'Software & Automation';
 
 export const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rohitkumar-co-in' },

@@ -29,23 +29,16 @@ The development launcher writes the Telegram and Turnstile secrets to a temporar
 
 ## Deploy to Cloudflare Workers
 
-Set the four variables above in `local.env` or the deployment environment, then run `npm run deploy`. The deployment script builds the site, writes the three private values to a temporary secrets file outside the repository, passes the public site key as a Worker variable, and removes the temporary file after Wrangler exits. The Cloudflare account ID and Worker name are set in `wrangler.jsonc`.
+Production deploys use Cloudflare Workers Builds, connected to this GitHub repository on the `main` branch. On each push, Workers Builds runs `npm run build`, then deploys with `npx wrangler deploy`. Wrangler reads the Worker entry point and static asset directory from `wrangler.jsonc`.
 
-After the first deploy, attach `rohitkumar.co.in` as a custom domain to the `rohitkumar-portfolio` Worker in Cloudflare if it is not already attached. Confirm the Turnstile widget allows the production hostname. Never commit `local.env`, `.dev.vars`, or any file containing secrets.
+Set production values in the Worker’s **Settings → Variables and Secrets** in Cloudflare:
 
-### Automatic deployment from GitHub
+- `PUBLIC_TURNSTILE_SITE_KEY` — a regular Worker variable used to load the public Turnstile widget.
+- `BOT_TOKEN`, `USER_ID`, and `TURNSTILE_SECRET_KEY` — Worker secrets used to verify and deliver contact enquiries.
 
-The GitHub Actions workflow at `.github/workflows/deploy-worker.yml` builds and deploys the Worker after every push to `main`. It can also be started manually from the repository’s **Actions** tab. The Cloudflare account ID is read from `wrangler.jsonc`.
+Workers Builds handles deployment authorization in Cloudflare. This project does not use a GitHub Actions deployment workflow or GitHub Cloudflare secrets. Check the Worker’s **Builds** page in Cloudflare for deploy status. Add `rohitkumar.co.in` as a custom domain if it is not already attached, and allow that hostname in the Turnstile widget settings.
 
-Before the first workflow run, add these repository **Actions secrets** in GitHub under **Settings → Secrets and variables → Actions**:
-
-- `CLOUDFLARE_API_TOKEN` — an account API token with **Edit Cloudflare Workers** permission, scoped to this Cloudflare account.
-- `BOT_TOKEN`
-- `USER_ID`
-- `TURNSTILE_SECRET_KEY`
-- `PUBLIC_TURNSTILE_SITE_KEY`
-
-Keep the Cloudflare API token and Worker secrets in GitHub Actions secrets. Do not add them to the workflow file or commit them to the repository.
+For local development, keep the four values in the ignored `local.env` file. `npm run deploy` is available for an intentional manual deploy from a machine authenticated with Wrangler. Never commit `local.env`, `.dev.vars`, or any file containing secrets.
 
 ## Pages
 
