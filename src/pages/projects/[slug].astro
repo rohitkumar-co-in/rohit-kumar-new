@@ -14,9 +14,9 @@ const { project } = Astro.props;
     <div class="case-topline" data-reveal><a href="/projects/" class="back-link"><Icon name="arrow" /> All projects</a><p class="section-kicker"><span>{project.number}</span> {project.kind}</p></div>
     <div class="case-intro">
       <div class="case-heading" data-reveal><h1>{project.name}</h1><p class="case-title">{project.caseTitle}</p></div>
-      <div class="case-summary" data-reveal><p>{project.summary}</p>{project.confidential ? <p class="case-confidential-note">Confidential internal company project · Preview coming soon</p> : <a class="button button-primary" href={project.url} target="_blank" rel="noreferrer">Visit {project.name} <Icon name="external" /></a>}</div>
+      <div class="case-summary" data-reveal><p>{project.summary}</p>{project.confidential ? <p class="case-confidential-note">Confidential internal company project</p> : <a class="button button-primary" href={project.url} target="_blank" rel="noreferrer">Visit {project.name} <Icon name="external" /></a>}</div>
     </div>
-    <figure class="case-visual" data-reveal><img class="case-screenshot" src={project.screenshot} alt={project.confidential ? `Preview placeholder for confidential ${project.name} internal tool` : `${project.name} current homepage`} loading="eager" /></figure>
+    <figure class="case-visual" data-reveal><img class="case-screenshot" src={project.screenshot} alt={project.confidential ? `Screenshot of confidential ${project.name} internal tool` : `${project.name} current homepage`} loading="eager" /></figure>
   </section>
   <section class="case-details page-shell" aria-labelledby="case-problem-title">
     <div class="case-story" data-reveal>
