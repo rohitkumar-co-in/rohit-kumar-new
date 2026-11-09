@@ -98,8 +98,8 @@ export const projects = [
     caseBuild: 'This project was developed for internal company use. I’m keeping the company name, domain, and internal details confidential.',
   },
   {
-    slug: 'quick-desk',
-    name: 'Quick Desk',
+    slug: 'voice-desk',
+    name: 'Voice Desk',
     kind: 'Confidential · SIP calling',
     url: '',
     screenshot: '/images/confidential-project-placeholder.svg',
@@ -114,7 +114,7 @@ export const projects = [
     caseProblem: 'A business can buy phone numbers from Twilio or another provider, then still need third-party apps or softphones to call or message customers. Those tools add ongoing costs and keep communication outside the company’s own setup.',
     caseSolutionTitle: 'Connect the number to the company’s own SIP server.',
     caseSectionTitle: 'Voice and messages on the company’s existing server.',
-    caseSolution: 'Quick Desk uses a Twilio SIP domain to bring voice and messaging capabilities together on the company’s own SIP server. The team can call or message customers from the web or a phone, using infrastructure the company already has.',
+    caseSolution: 'Voice Desk uses a Twilio SIP domain to bring voice and messaging capabilities together on the company’s own SIP server. The team can call or message customers from the web or a phone, using infrastructure the company already has.',
     caseFlowTitle: 'Bring the number into the company’s own setup.',
     caseFlow: [
       { title: 'Connect the business number', text: 'Use a Twilio SIP domain to connect the number to the company’s existing SIP server.' },
