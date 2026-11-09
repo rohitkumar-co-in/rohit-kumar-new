@@ -182,6 +182,7 @@ main,.site-footer { position:relative; z-index:1; }
 .project-link { display:inline-flex; align-items:center; gap:6px; padding-top:28px; color:var(--violet-d); font-size:.76rem; font-weight:700; white-space:nowrap; }
 .project-link .icon { width:15px; transition:transform .25s; }
 .project-card:hover .project-link .icon { transform:translateX(4px); }
+.project-confidential-mark { position:absolute; left:21px; bottom:19px; padding:6px 10px; border:1px solid rgba(255,255,255,.88); border-radius:99px; color:var(--violet-d); background:rgba(255,255,255,.67); font:500 .62rem var(--mono); letter-spacing:.03em; }
 
 /* Services, offer and story */
 .services-preview { display:grid; grid-template-columns:.86fr 1.14fr; gap:90px; padding-top:110px; padding-bottom:128px; }
@@ -254,6 +255,7 @@ main,.site-footer { position:relative; z-index:1; }
 .case-title { max-width:640px; margin:0; color:var(--violet-d); font:600 clamp(1.8rem,3.1vw,2.8rem)/1.18 var(--head); letter-spacing:-.055em; }
 .case-summary { max-width:430px; padding-bottom:5px; }
 .case-summary > p { margin:0 0 17px; color:var(--ink-2); line-height:1.7; }
+.case-summary > .case-confidential-note { display:inline-flex; padding:9px 12px; border:1px solid var(--glass-line); border-radius:12px; color:var(--violet-d); background:rgba(255,255,255,.64); font-size:.74rem; font-weight:600; line-height:1.5; }
 .case-visual { position:relative; isolation:isolate; width:100%; margin:0; aspect-ratio:1.95; overflow:hidden; padding:8px; border:1px solid rgba(255,255,255,.95); border-radius:27px; background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(236,228,255,.72)); box-shadow:var(--shadow),inset 0 1px 0 #fff; }
 .case-purple .case-visual { background:linear-gradient(145deg,#F0EBFF,#CFC0FF 55%,#9B7AFF); }
 .case-screenshot { display:block; width:100%; height:100%; border-radius:19px; object-fit:cover; object-position:center top; }
@@ -288,6 +290,7 @@ main,.site-footer { position:relative; z-index:1; }
 .case-solution-note > span { color:var(--muted); font:500 .65rem var(--mono); letter-spacing:.08em; }
 .case-solution-note > strong { max-width:360px; color:var(--ink); font:700 clamp(1.35rem,2.2vw,1.9rem)/1.25 var(--head); letter-spacing:-.045em; }
 .case-solution-note > a { display:inline-flex; align-items:center; gap:9px; width:fit-content; color:var(--violet-d); font-size:.82rem; font-weight:700; }
+.case-private-label { color:var(--muted); font-size:.75rem; line-height:1.55; }
 .case-solution-note .icon { width:15px; height:15px; }
 .case-facts { align-self:start; border-top:1px solid var(--glass-line); }
 .case-facts > div { display:grid; gap:8px; padding:17px 0; border-bottom:1px solid var(--glass-line); }

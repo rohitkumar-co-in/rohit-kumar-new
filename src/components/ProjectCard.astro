@@ -1,5 +1,5 @@
 ---
-import type { projects } from '../data/site';
+import { projects } from '../data/site';
 import Icon from './Icon.astro';
 type Project = (typeof projects)[number];
 const { project, compact = false } = Astro.props as { project: Project; compact?: boolean };
@@ -8,11 +8,12 @@ const { project, compact = false } = Astro.props as { project: Project; compact?
   <div class="project-art" aria-hidden="true">
     <span class="art-index">SELECTED PROJECT&nbsp; / &nbsp;{project.number}</span>
     <div class="project-window">
-      <div class="window-bar"><span></span><span></span><span></span><i>{project.slug}.com</i></div>
+      <div class="window-bar"><span></span><span></span><span></span><i>{project.confidential ? 'Confidential project' : `${project.slug}.com`}</i></div>
       <img class="project-preview" src={project.screenshot} alt="" loading="lazy" />
     </div>
     <span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span>
-    <span class="art-chip">{project.number} / 02</span>
+    <span class="art-chip">{project.number} / {String(projects.length).padStart(2, '0')}</span>
+    {project.confidential && <span class="project-confidential-mark">Confidential</span>}
     <span class="project-open"><Icon name="arrow" /></span>
   </div>
   <div class="project-meta"><div><span class="eyebrow">{project.kind}</span><h3>{project.name}</h3><p>{project.summary}</p></div><span class="project-link">Explore project <Icon name="arrow" /></span></div>

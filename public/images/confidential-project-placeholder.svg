@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" fill="none">
+  <defs>
+    <linearGradient id="surface" x1="112" y1="42" x2="1080" y2="616" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#eee8ff"/></linearGradient>
+    <linearGradient id="accent" x1="245" y1="200" x2="945" y2="510" gradientUnits="userSpaceOnUse"><stop stop-color="#a88cff"/><stop offset="1" stop-color="#6636e8"/></linearGradient>
+    <filter id="shadow" x="205" y="95" width="790" height="475" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#49348A" flood-opacity=".16"/></filter>
+  </defs>
+  <rect width="1200" height="650" rx="28" fill="url(#surface)"/>
+  <circle cx="1060" cy="88" r="210" fill="#fff" fill-opacity=".36"/>
+  <circle cx="95" cy="602" r="250" fill="#fff" fill-opacity=".34"/>
+  <g filter="url(#shadow)">
+    <rect x="243" y="132" width="714" height="386" rx="22" fill="#fff" fill-opacity=".83" stroke="#fff" stroke-width="3"/>
+    <path d="M244 183h712" stroke="#e7e0f5" stroke-width="2"/>
+    <circle cx="276" cy="158" r="6" fill="#c4b3f5"/><circle cx="297" cy="158" r="6" fill="#d7caf8"/><circle cx="318" cy="158" r="6" fill="#e6def9"/>
+    <rect x="284" y="220" width="68" height="68" rx="22" fill="url(#accent)"/>
+    <path d="M302 242h32v24h-32z" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="m303 243 15 12 15-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="375" y="228" width="245" height="13" rx="6.5" fill="#392c56" fill-opacity=".82"/>
+    <rect x="375" y="253" width="166" height="9" rx="4.5" fill="#8b81a2" fill-opacity=".45"/>
+    <rect x="284" y="326" width="632" height="1" fill="#e9e4f1"/>
+    <rect x="284" y="357" width="310" height="12" rx="6" fill="#dcd5ed"/>
+    <rect x="284" y="382" width="440" height="9" rx="4.5" fill="#eeeaf5"/>
+    <rect x="284" y="402" width="390" height="9" rx="4.5" fill="#eeeaf5"/>
+    <rect x="284" y="448" width="148" height="35" rx="17.5" fill="url(#accent)"/>
+    <rect x="453" y="448" width="108" height="35" rx="17.5" fill="#f2eff9"/>
+  </g>
+  <rect x="770" y="458" width="190" height="56" rx="18" fill="#fff" fill-opacity=".91" stroke="#fff" stroke-width="2"/>
+  <circle cx="795" cy="486" r="5" fill="#7950ed"/>
+  <text x="811" y="482" fill="#5d5274" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">CONFIDENTIAL</text>
+  <text x="811" y="499" fill="#9289a5" font-family="Arial,sans-serif" font-size="10">Preview coming soon</text>
+</svg>

@@ -14,9 +14,9 @@ const { project } = Astro.props;
     <div class="case-topline" data-reveal><a href="/projects/" class="back-link"><Icon name="arrow" /> All projects</a><p class="section-kicker"><span>{project.number}</span> {project.kind}</p></div>
     <div class="case-intro">
       <div class="case-heading" data-reveal><h1>{project.name}</h1><p class="case-title">{project.caseTitle}</p></div>
-      <div class="case-summary" data-reveal><p>{project.summary}</p><a class="button button-primary" href={project.url} target="_blank" rel="noreferrer">Visit {project.name} <Icon name="external" /></a></div>
+      <div class="case-summary" data-reveal><p>{project.summary}</p>{project.confidential ? <p class="case-confidential-note">Confidential internal company project · Preview coming soon</p> : <a class="button button-primary" href={project.url} target="_blank" rel="noreferrer">Visit {project.name} <Icon name="external" /></a>}</div>
     </div>
-    <figure class="case-visual" data-reveal><img class="case-screenshot" src={project.screenshot} alt={`${project.name} current homepage`} loading="eager" /></figure>
+    <figure class="case-visual" data-reveal><img class="case-screenshot" src={project.screenshot} alt={project.confidential ? `Preview placeholder for confidential ${project.name} internal tool` : `${project.name} current homepage`} loading="eager" /></figure>
   </section>
   <section class="case-details page-shell" aria-labelledby="case-problem-title">
     <div class="case-story" data-reveal>
@@ -27,7 +27,7 @@ const { project } = Astro.props;
     <aside class="case-facts" data-reveal>
       <div><span>MY PART</span><strong>{project.role}</strong></div>
       <div><span>PRODUCT FOCUS</span><strong>{project.focus.join(' / ')}</strong></div>
-      <div><span>LIVE SITE</span><a href={project.url} target="_blank" rel="noreferrer">{project.url.replace('https://', '')} ↗</a></div>
+      {project.confidential ? <div><span>PROJECT ACCESS</span><strong>Confidential · Internal company tool</strong></div> : <div><span>LIVE SITE</span><a href={project.url} target="_blank" rel="noreferrer">{project.url.replace('https://', '')} ↗</a></div>}
     </aside>
   </section>
   <section class="case-details case-solution page-shell" aria-labelledby="case-solution-title">
@@ -40,7 +40,7 @@ const { project } = Astro.props;
     <aside class="case-solution-note" data-reveal>
       <span>THE PRODUCT</span>
       <strong>{project.caseSectionTitle}</strong>
-      <a href={project.url} target="_blank" rel="noreferrer">See {project.name} live <Icon name="external" /></a>
+      {project.confidential ? <span class="case-private-label">Company and domain details are confidential</span> : <a href={project.url} target="_blank" rel="noreferrer">See {project.name} live <Icon name="external" /></a>}
     </aside>
   </section>
   <section class="case-flow-section page-shell" aria-labelledby="case-flow-title">
@@ -62,5 +62,5 @@ const { project } = Astro.props;
       <p>{project.caseValue}</p>
     </div>
   </section>
-  <ClosingCTA number="02" />
+  <ClosingCTA number="05" />
 </BaseLayout>
