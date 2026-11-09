@@ -7,7 +7,7 @@ import Icon from './Icon.astro';
   <div class="footer-main">
     <div class="footer-brand-block">
       <a href="/" class="wordmark footer-mark"><BrandMark /><span class="wordmark-copy">Rohit Kumar<small>{brandDescriptor}</small></span></a>
-      <p>I build websites that bring in more leads, software that makes daily work easier, and automations that save your team time.</p>
+      <p>I build websites that bring in more leads, custom software and SaaS that make work easier, and automations that save your team time.</p>
     </div>
     <div class="footer-nav-group">
       <span class="footer-label">Explore</span>
@@ -20,5 +20,5 @@ import Icon from './Icon.astro';
       <div class="footer-socials" aria-label="Social links">{socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer">{social.label}</a>)}</div>
     </div>
   </div>
-  <div class="footer-bottom"><span>© {new Date().getFullYear()} Rohit Kumar</span><span class="footer-descriptor">{brandDescriptor}</span></div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} Rohit Kumar</span><nav class="footer-legal" aria-label="Legal information"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/cookies/">Cookies</a></nav><span class="footer-descriptor">{brandDescriptor}</span></div>
 </footer>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { email } from '../data/site';
+---
+<BaseLayout title="Terms of Use | Rohit Kumar" description="Terms for using Rohit Kumar’s portfolio, project information, and contact form for custom websites, software, APIs, and automation.">
+  <section class="legal-hero page-shell">
+    <p class="section-kicker">Legal / Terms</p>
+    <h1>Terms of <em>Use</em></h1>
+    <p>These terms cover your use of this portfolio and its contact form.</p>
+    <p class="legal-updated">Last updated November 9, 2026</p>
+  </section>
+  <article class="legal-content page-shell">
+    <p>This website is operated by Rohit Kumar. By using it, you agree to these terms. If you don’t agree, please stop using the site.</p>
+
+    <section>
+      <h2>Website information</h2>
+      <p>The site describes my work, services, and products. I try to keep it accurate, but project details, availability, prices, and other information can change. The website itself is not a promise that a particular service or feature will be available.</p>
+    </section>
+
+    <section>
+      <h2>Project enquiries and pricing</h2>
+      <p>Sending an enquiry does not create a client relationship or reserve a project. Projects start at $599. The final price, scope, schedule, payment terms, revisions, and support depend on the work and will be agreed in a separate written proposal or contract before work begins.</p>
+      <p>Business results depend on many factors outside a website or software build. I don’t promise a specific number of leads, sales, savings, or other results unless a separate written agreement says so.</p>
+    </section>
+
+    <section>
+      <h2>Using this site</h2>
+      <p>Use the site lawfully. Don’t try to disrupt it, bypass its security, send harmful code, or use the contact form to spam or impersonate someone. Don’t submit information you don’t have the right to share.</p>
+    </section>
+
+    <section>
+      <h2>Content and outside links</h2>
+      <p>Unless a page says otherwise, the site’s writing, design, and original graphics belong to Rohit Kumar. Product names, logos, and other marks belong to their respective owners. You may link to public pages, but don’t copy or republish site content as your own without permission.</p>
+      <p>This site links to other websites, including Leadomi, OTP Wala, and service providers. I don’t control those sites or their content, privacy practices, or terms.</p>
+    </section>
+
+    <section>
+      <h2>Availability and liability</h2>
+      <p>I work to keep the site available and current, but it may be changed, interrupted, or unavailable at times. To the extent allowed by law, this portfolio is provided without a promise that it will always be error-free or available. Nothing in these terms limits rights or remedies that cannot legally be limited.</p>
+    </section>
+
+    <section>
+      <h2>Questions</h2>
+      <p>Questions about these terms? Email <a href={`mailto:${email}?subject=Terms%20question`}>{email}</a>.</p>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "rohitkumar-portfolio",
+  "account_id": "44b16a06f6e343d14954bd86a7603e25",
   "main": "./src/worker.ts",
   "compatibility_date": "2026-11-08",
   "assets": {

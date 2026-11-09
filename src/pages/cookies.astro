@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { email } from '../data/site';
+---
+<BaseLayout title="Cookies & Browser Storage | Rohit Kumar" description="Find out whether Rohit Kumar’s portfolio uses cookies, analytics, advertising trackers, or third-party security tools.">
+  <section class="legal-hero page-shell">
+    <p class="section-kicker">Legal / Cookies</p>
+    <h1>Cookies &amp; browser <em>storage</em></h1>
+    <p>Here’s what this portfolio and its third-party tools use in your browser.</p>
+    <p class="legal-updated">Last updated November 9, 2026</p>
+  </section>
+  <article class="legal-content page-shell">
+    <p>This portfolio does not currently use advertising cookies or analytics tools. It does not have an account sign-in or save a cookie preference.</p>
+
+    <section>
+      <h2>Contact form security</h2>
+      <p>The contact page loads Cloudflare Turnstile to reduce spam. Turnstile runs a browser challenge and may process technical signals needed for that security check. Cloudflare says Turnstile does not access, store, or send the contents of your form. See <a href="https://developers.cloudflare.com/turnstile/" target="_blank" rel="noreferrer">Cloudflare’s Turnstile documentation</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noreferrer">Privacy Policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>Fonts and third-party requests</h2>
+      <p>This site loads fonts from Google Fonts. Your browser makes a request to Google to retrieve them, and Google may receive technical information such as your IP address and browser details. See <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google’s Privacy Policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>Your controls</h2>
+      <p>You can use your browser settings to block or clear cookies and site storage. Blocking Turnstile or its connection may prevent the contact form from working; you can email me at <a href={`mailto:${email}`}>{email}</a> instead.</p>
+      <p>If I add analytics or advertising tools later, I’ll update this page and add the consent controls required for the places where the site is used.</p>
+    </section>
+  </article>
+</BaseLayout>

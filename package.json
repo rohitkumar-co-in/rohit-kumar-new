@@ -7,7 +7,7 @@
     "build": "node --env-file-if-exists=local.env node_modules/astro/bin/astro.mjs build",
     "test": "node --test",
     "preview": "npm run build && node --env-file=local.env scripts/dev-worker.mjs 4322",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && node --env-file-if-exists=local.env scripts/deploy-worker.mjs"
   },
   "dependencies": {
     "astro": "^7.4.7"

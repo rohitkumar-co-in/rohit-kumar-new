@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { email } from '../data/site';
+---
+<BaseLayout title="Privacy Policy | Rohit Kumar" description="Learn what information Rohit Kumar collects through this portfolio, why it is used, and how to request access, correction, or deletion.">
+  <section class="legal-hero page-shell">
+    <p class="section-kicker">Legal / Privacy</p>
+    <h1>Privacy <em>Policy</em></h1>
+    <p>This page explains how I handle information when you browse this portfolio or send me a project enquiry.</p>
+    <p class="legal-updated">Last updated November 9, 2026</p>
+  </section>
+  <article class="legal-content page-shell">
+    <p>This website is operated by Rohit Kumar. This notice covers <strong>rohitkumar.co.in</strong>. Leadomi and OTP Wala are separate products and may have their own privacy notices.</p>
+
+    <section>
+      <h2>Information you send me</h2>
+      <p>If you use the contact form, I collect the information you enter:</p>
+      <ul>
+        <li>Your name and email address, which are required so I can reply.</li>
+        <li>Your project type and budget range, which are optional.</li>
+        <li>Your project description, which is required to understand your enquiry.</li>
+      </ul>
+      <p>Please don’t include passwords, payment details, or sensitive personal information in the form. You can email me directly at <a href={`mailto:${email}`}>{email}</a>.</p>
+    </section>
+
+    <section>
+      <h2>How I use it</h2>
+      <p>I use your enquiry to understand what you need, reply to you, and discuss a possible project. I don’t use contact form details to send a marketing newsletter.</p>
+      <p>You choose to send these details so I can respond and take steps you request before a possible project agreement. For visitors covered by UK GDPR, this is generally processing needed to take steps at your request before entering a contract. I use security information to prevent spam and protect the site based on my interest in keeping the form safe. Where consent is the basis required by the law that applies to you, you can withdraw it by emailing me.</p>
+      <p>The contact form uses Cloudflare Turnstile to block spam. The browser sends a challenge token to my Worker, which asks Cloudflare to verify it. The form contents are not sent to Turnstile for this check.</p>
+    </section>
+
+    <section>
+      <h2>Who helps process it</h2>
+      <ul>
+        <li><strong>Cloudflare</strong> hosts the website and Worker and provides Turnstile. Cloudflare may process request and browser signals needed to run the site and check the form.</li>
+        <li><strong>Telegram</strong> receives project enquiries through its Bot API so I can review and respond to them. Telegram handles those messages under its own <a href="https://telegram.org/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.</li>
+        <li><strong>Google Fonts</strong> supplies the typefaces used on this site. Your browser requests those font files from Google, which may receive technical request information. See <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google’s Privacy Policy</a>.</li>
+      </ul>
+      <p>The form Worker does not save enquiries to a website database. Cloudflare and the other providers may handle information in countries outside your own. Their privacy and transfer terms explain how they handle international processing: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noreferrer">Cloudflare’s Privacy Policy</a>, <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noreferrer">Cloudflare’s Data Processing Addendum</a>, <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noreferrer">Google’s data transfer information</a>, and <a href="https://telegram.org/privacy" target="_blank" rel="noreferrer">Telegram’s Privacy Policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>How long I keep it</h2>
+      <p>I keep enquiry messages while I’m responding to them. If we work together, I may keep project correspondence for as long as needed to manage the work and meet record-keeping requirements. You can ask me to delete your enquiry; I’ll remove it when I no longer need it unless I must keep it by law. Telegram may retain messages under its own policies.</p>
+    </section>
+
+    <section>
+      <h2>Your choices and requests</h2>
+      <p>You can ask what personal information I have about you, request a correction or deletion, or raise a privacy concern. If you want to withdraw permission for me to use information you sent, email <a href={`mailto:${email}?subject=Privacy%20request`}>{email}</a> with “Privacy request” in the subject. I may need to confirm which enquiry is yours before acting.</p>
+      <p>You can also contact the privacy or data protection regulator that applies where you live. The rights and complaint process available to you depend on the laws that apply to your situation.</p>
+    </section>
+
+    <section>
+      <h2>Security and changes</h2>
+      <p>I use Cloudflare’s security tools and limit the information requested by the form. No website or online service can promise perfect security. I may update this notice when the site or its data handling changes; the date at the top shows when it was last revised.</p>
+    </section>
+  </article>
+</BaseLayout>

@@ -6,12 +6,12 @@ import ClosingCTA from '../components/ClosingCTA.astro';
 import { projects, projectPricingNote, services } from '../data/site';
 const tickerItems = ['Custom software', 'Built for your business', 'AI where it helps'];
 ---
-<BaseLayout title="Rohit Kumar | Web Development & Automation" description="I build websites that bring in more leads, software that makes work easier, and automations that save your team time.">
+<BaseLayout title="Rohit Kumar | Software & Automation" description="I build lead-focused websites, custom software and SaaS, APIs, and automations that solve business problems, save time, and support growth.">
   <section class="home-hero page-shell">
     <div class="hero-copy">
       <div class="hero-overline" data-reveal><span class="availability-dot"></span><span>Founder of Leadomi</span><span class="hero-location">India · <b data-local-time>--:--</b></span></div>
       <h1 class="hero-title" data-reveal>I build what your<br /><span>business needs.</span></h1>
-      <p class="hero-lede" data-reveal>Tell me where you’re losing leads, what takes your team too long, or what you want to launch. I build websites, software, and automations to fix it. I use AI when it makes the solution better.</p>
+      <p class="hero-lede" data-reveal>Tell me where you’re losing leads, what takes your team too long, or what you want to launch. I build websites, custom software, SaaS, APIs, and automations to fix it. I use AI when it makes the solution better.</p>
       <div class="hero-actions" data-reveal><a class="button button-primary" href="/projects/">Explore projects <Icon name="arrow" /></a></div>
     </div>
     <div class="hero-portrait" data-reveal>
@@ -69,7 +69,7 @@ const tickerItems = ['Custom software', 'Built for your business', 'AI where it 
   </section>)}
 
   <section class="services-preview page-shell" aria-labelledby="services-title">
-    <div class="services-intro" data-reveal><p class="section-kicker"><span>02</span> What I build</p><h2 id="services-title">Fix what’s slowing you down.<br /><em>Make room to grow.</em></h2><p>I build websites to bring in more leads, software to solve daily problems, and automations that save your team time.</p><a class="button button-outline" href="/services/">See what I can build <Icon name="arrow" /></a></div>
+    <div class="services-intro" data-reveal><p class="section-kicker"><span>02</span> What I build</p><h2 id="services-title">Fix what’s slowing you down.<br /><em>Make room to grow.</em></h2><p>I build lead-focused websites, custom software and SaaS, APIs that connect your tools, and automations that handle repeat tasks.</p><a class="button button-outline" href="/services/">See what I can build <Icon name="arrow" /></a></div>
     <div class="service-list">{services.map((service) => <a class="service-row" href="/services/" data-reveal><span class="service-index">{service.index}</span><span class="service-copy"><strong>{service.title}</strong><small>{service.text}</small></span><span class="service-mark">{service.mark}</span></a>)}</div>
   </section>
 

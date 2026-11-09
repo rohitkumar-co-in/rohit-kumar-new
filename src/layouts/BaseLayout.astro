@@ -3,9 +3,36 @@ import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Icon from '../components/Icon.astro';
-interface Props { title?: string; description?: string; }
-const { title = 'Rohit Kumar | Web Development & Automation', description = 'I build websites that bring in more leads, software that makes work easier, and automations that save your team time.' } = Astro.props;
+interface Props { title?: string; description?: string; noindex?: boolean; }
+const { title = 'Rohit Kumar | Software & Automation', description = 'I build lead-focused websites, custom software and SaaS, APIs, and automations that solve business problems, save time, and support growth.', noindex = false } = Astro.props;
 const fullTitle = title;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://rohitkumar.co.in/#person',
+      name: 'Rohit Kumar',
+      url: 'https://rohitkumar.co.in/',
+      jobTitle: 'Software Developer and Automation Builder',
+      description: 'I build lead-focused websites, custom software and SaaS, APIs, and automations for businesses.',
+      knowsAbout: ['Web Development', 'Custom Software', 'SaaS', 'APIs and Integrations', 'Business Automation'],
+      sameAs: [
+        'https://www.linkedin.com/in/rohitkumar-co-in',
+        'https://github.com/rohitkumar-co-in',
+        'https://www.instagram.com/rohitkumar_co_in',
+        'https://www.facebook.com/rohitkumar.co.in',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://rohitkumar.co.in/#website',
+      url: 'https://rohitkumar.co.in/',
+      name: 'Rohit Kumar | Software & Automation',
+      publisher: { '@id': 'https://rohitkumar.co.in/#person' },
+    },
+  ],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -14,6 +41,7 @@ const fullTitle = title;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f8f6fb" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -28,6 +56,7 @@ const fullTitle = title;
     <meta name="twitter:image" content="https://rohitkumar.co.in/og-image.png" />
     <meta name="twitter:image:alt" content="Rohit Kumar portfolio: websites, software, APIs, and automation for real business needs." />
     <link rel="canonical" href={`https://rohitkumar.co.in${Astro.url.pathname}`} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <link rel="icon" type="image/svg+xml" href="/brand-mark.svg" />
     <link rel="alternate icon" href="/favicon.ico" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
