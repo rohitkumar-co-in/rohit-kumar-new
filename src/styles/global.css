@@ -426,7 +426,7 @@ main,.site-footer { position:relative; z-index:1; }
 .contact-form button:disabled { cursor:wait; opacity:.7; }
 .turnstile-setup-note { padding:12px 14px; margin:0 0 18px; border:1px solid var(--glass-line); border-radius:12px; color:var(--ink-2); background:rgba(236,228,255,.4); font-size:.82rem; }
 .cf-turnstile { margin-top:20px; }
-.form-note { padding-top:13px; margin:0; border-top:1px solid var(--glass-line); color:var(--muted); font-size:.68rem; line-height:1.5; }
+.form-note { padding-top:13px; margin:20px 0 0; border-top:1px solid var(--glass-line); color:var(--muted); font-size:.68rem; line-height:1.5; }
 .form-honey { position:absolute!important; left:-10000px!important; width:1px!important; height:1px!important; overflow:hidden!important; }
 .contact-strip { display:flex; align-items:center; justify-content:center; gap:17px; padding:20px; margin-bottom:100px; border-top:1px solid var(--glass-line); border-bottom:1px solid var(--glass-line); color:var(--muted); font:500 .63rem var(--mono); letter-spacing:.07em; text-align:center; }
 .contact-strip i { width:5px; height:5px; border-radius:50%; background:var(--lilac); }
