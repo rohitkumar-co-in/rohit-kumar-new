@@ -18,6 +18,49 @@ const { project } = Astro.props;
     </div>
     <figure class="case-visual" data-reveal><img class="case-screenshot" src={project.screenshot} alt={`${project.name} current homepage`} loading="eager" /></figure>
   </section>
-  <section class="case-details page-shell"><div class="case-story" data-reveal><p class="section-kicker"><span>01</span> The product</p><h2>{project.caseSectionTitle}</h2><p>{project.caseStory}</p><p>{project.caseBuild}</p></div><aside class="case-facts" data-reveal><div><span>MY PART</span><strong>{project.role}</strong></div><div><span>WHAT IT DOES</span><strong>{project.focus.join(' / ')}</strong></div><div><span>LIVE SITE</span><a href={project.url} target="_blank" rel="noreferrer">{project.url.replace('https://', '')} ↗</a></div></aside></section>
+  <section class="case-details page-shell" aria-labelledby="case-problem-title">
+    <div class="case-story" data-reveal>
+      <p class="section-kicker"><span>01</span> The problem</p>
+      <h2 id="case-problem-title">{project.caseProblemTitle}</h2>
+      <p>{project.caseProblem}</p>
+    </div>
+    <aside class="case-facts" data-reveal>
+      <div><span>MY PART</span><strong>{project.role}</strong></div>
+      <div><span>PRODUCT FOCUS</span><strong>{project.focus.join(' / ')}</strong></div>
+      <div><span>LIVE SITE</span><a href={project.url} target="_blank" rel="noreferrer">{project.url.replace('https://', '')} ↗</a></div>
+    </aside>
+  </section>
+  <section class="case-details case-solution page-shell" aria-labelledby="case-solution-title">
+    <div class="case-story" data-reveal>
+      <p class="section-kicker"><span>02</span> The solution</p>
+      <h2 id="case-solution-title">{project.caseSolutionTitle}</h2>
+      <p>{project.caseSolution}</p>
+      <p>{project.caseBuild}</p>
+    </div>
+    <aside class="case-solution-note" data-reveal>
+      <span>THE PRODUCT</span>
+      <strong>{project.caseSectionTitle}</strong>
+      <a href={project.url} target="_blank" rel="noreferrer">See {project.name} live <Icon name="external" /></a>
+    </aside>
+  </section>
+  <section class="case-flow-section page-shell" aria-labelledby="case-flow-title">
+    <div class="case-flow-heading" data-reveal>
+      <p class="section-kicker"><span>03</span> How it works</p>
+      <h2 id="case-flow-title">{project.caseFlowTitle}</h2>
+    </div>
+    <ol class="case-flow-list">
+      {project.caseFlow.map((step, index) => <li data-reveal>
+        <span class="case-flow-number">0{index + 1}</span>
+        <div><h3>{step.title}</h3><p>{step.text}</p></div>
+        <span class="case-flow-arrow" aria-hidden="true">↗</span>
+      </li>)}
+    </ol>
+  </section>
+  <section class="case-value-section page-shell" aria-labelledby="case-value-title">
+    <div class="case-value-card" data-reveal>
+      <div><p class="section-kicker"><span>04</span> Why it helps</p><h2 id="case-value-title">{project.caseValueTitle}</h2></div>
+      <p>{project.caseValue}</p>
+    </div>
+  </section>
   <ClosingCTA number="02" />
 </BaseLayout>
