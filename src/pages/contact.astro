@@ -24,11 +24,12 @@ import { email, socials } from '../data/site';
       </div></div>
       <div class="form-field"><span id="budget-label">Budget range</span><div class="custom-select" data-custom-select>
         <input type="hidden" name="budget" value="" />
-        <button type="button" class="custom-select-trigger" aria-labelledby="budget-label budget-value" aria-haspopup="listbox" aria-expanded="false" aria-controls="budget-options"><span id="budget-value">Not sure yet</span><Icon name="chevron" /></button>
+        <button type="button" class="custom-select-trigger" aria-labelledby="budget-label budget-value" aria-haspopup="listbox" aria-expanded="false" aria-controls="budget-options"><span id="budget-value">Select a budget range</span><Icon name="chevron" /></button>
         <div class="custom-select-options" id="budget-options" role="listbox" aria-labelledby="budget-label" hidden>
           <button type="button" role="option" aria-selected="false" data-value="$599–$1,500">$599–$1,500</button>
           <button type="button" role="option" aria-selected="false" data-value="$1,500–$5,000">$1,500–$5,000</button>
           <button type="button" role="option" aria-selected="false" data-value="$5,000+">$5,000+</button>
+          <button type="button" role="option" aria-selected="false" data-value="Not sure yet">Not sure yet</button>
         </div>
       </div></div>
     </div>
